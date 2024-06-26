@@ -46,30 +46,7 @@
               <div class="button input-box">
                 <input type="submit" name="login" value="Login">
               </div>
-              <div class="text sign-up-text">Don't have an account? <label for="flip">Signup now</label></div>
-            </div>
-          </form>
-        </div>
-        <div class="signup-form">
-          <div class="title">Signup</div>
-          <form action="register.php" method="post">
-            <div class="input-boxes">
-              <div class="input-box">
-                <i class="fas fa-user"></i>
-                <input type="text" name="name" placeholder="Enter your name" required>
-              </div>
-              <div class="input-box">
-                <i class="fas fa-envelope"></i>
-                <input type="text" name="email" placeholder="Enter your email" required>
-              </div>
-              <div class="input-box">
-                <i class="fas fa-lock"></i>
-                <input type="password" name="password" placeholder="Enter your password" required>
-              </div>
-              <div class="button input-box">
-                <input type="submit" name="signup" value="Submit">
-              </div>
-              <div class="text sign-up-text">Already have an account? <label for="flip">Login now</label></div>
+              <div class="text sign-up-text"> <a href="registration.php">Signup Now</a> | <a href="index.php">Main Page</a></div>
             </div>
           </form>
         </div>

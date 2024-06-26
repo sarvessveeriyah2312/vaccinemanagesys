@@ -40,7 +40,11 @@
             <div class="card">
               <div class="card-body">
                 <h4 class="card-title">Vaccinee</h4>
-                <p class="card-description"> Add class <code>.table-bordered</code>
+                <p class="card-description" style="display: flex; align-items: center; justify-content: space-between;">
+                  Easily add, update, and remove vaccinee users.
+                  <button type="button" class="btn btn-gradient-success btn-rounded btn-fw btn-sm">
+                    <i class="mdi mdi-account-plus"></i> Add Vaccinee
+                  </button>
                 </p>
                 <table class="table table-bordered">
                   <thead>
