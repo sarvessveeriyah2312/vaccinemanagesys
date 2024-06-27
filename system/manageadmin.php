@@ -12,6 +12,34 @@
   <link rel="stylesheet" href="../sources/css/style2.css">
   <!-- End layout styles -->
   <link rel="shortcut icon" href="../sources/images/favicon.ico" />
+  <style>
+    /* pagination styles */
+    .pagination {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: right;
+    }
+
+    .pagination li {
+      margin-right: 10px;
+    }
+
+    .pagination li a {
+      color: #337ab7;
+      text-decoration: none;
+    }
+
+    .pagination li a:hover {
+      color: #23527c;
+    }
+
+    .pagination li.active a {
+      color: #23527c;
+      font-weight: bold;
+    }
+  </style>
 </head>
 
 <body>
@@ -48,115 +76,154 @@
                     <i class="mdi mdi-account-plus"></i> Add Administrator
                   </button>
                 </p>
+                <?php
+                include '../backend/connection.php';
 
+                // Restrict access based on role
+                if (!isset($_SESSION['role_id']) || $_SESSION['role_id'] != 1) {
+                  echo '<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>';
+                  echo '<script type="text/javascript">';
+                  echo 'Swal.fire({
+                          icon: "error",
+                          title: "Access Denied",
+                          text: "You do not have access to this page.",
+                          confirmButtonText: "OK"
+                      }).then((result) => {
+                          if (result.isConfirmed) {
+                              window.location.href = "' . $dashboardLink . '";
+                          }
+                      });';
+                  echo '</script>';
+                  exit();
+                }
+                ?>
                 <table class="table table-bordered">
                   <thead>
                     <tr>
                       <th> # </th>
                       <th> First name </th>
-                      <th> Progress </th>
-                      <th> Amount </th>
-                      <th> Deadline </th>
+                      <th> Last name </th>
+                      <th> Email </th>
+                      <th> Created At </th>
+                      <th> Status </th>
+                      <th> Action </th>
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
-                      <td> 1 </td>
-                      <td> Herman Beck </td>
-                      <td>
-                        <div class="progress">
-                          <div class="progress-bar bg-success" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                        </div>
-                      </td>
-                      <td> $ 77.99 </td>
-                      <td> May 15, 2015 </td>
-                    </tr>
-                    <tr>
-                      <td> 2 </td>
-                      <td> Messsy Adam </td>
-                      <td>
-                        <div class="progress">
-                          <div class="progress-bar bg-danger" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-                        </div>
-                      </td>
-                      <td> $245.30 </td>
-                      <td> July 1, 2015 </td>
-                    </tr>
-                    <tr>
-                      <td> 3 </td>
-                      <td> John Richards </td>
-                      <td>
-                        <div class="progress">
-                          <div class="progress-bar bg-warning" role="progressbar" style="width: 90%" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
-                        </div>
-                      </td>
-                      <td> $138.00 </td>
-                      <td> Apr 12, 2015 </td>
-                    </tr>
-                    <tr>
-                      <td> 4 </td>
-                      <td> Peter Meggik </td>
-                      <td>
-                        <div class="progress">
-                          <div class="progress-bar bg-primary" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-                        </div>
-                      </td>
-                      <td> $ 77.99 </td>
-                      <td> May 15, 2015 </td>
-                    </tr>
-                    <tr>
-                      <td> 5 </td>
-                      <td> Edward </td>
-                      <td>
-                        <div class="progress">
-                          <div class="progress-bar bg-danger" role="progressbar" style="width: 35%" aria-valuenow="35" aria-valuemin="0" aria-valuemax="100"></div>
-                        </div>
-                      </td>
-                      <td> $ 160.25 </td>
-                      <td> May 03, 2015 </td>
-                    </tr>
-                    <tr>
-                      <td> 6 </td>
-                      <td> John Doe </td>
-                      <td>
-                        <div class="progress">
-                          <div class="progress-bar bg-info" role="progressbar" style="width: 65%" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100"></div>
-                        </div>
-                      </td>
-                      <td> $ 123.21 </td>
-                      <td> April 05, 2015 </td>
-                    </tr>
-                    <tr>
-                      <td> 7 </td>
-                      <td> Henry Tom </td>
-                      <td>
-                        <div class="progress">
-                          <div class="progress-bar bg-warning" role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
-                        </div>
-                      </td>
-                      <td> $ 150.00 </td>
-                      <td> June 16, 2015 </td>
-                    </tr>
+                    <?php
+                    include 'updateadmin.php';
+                    $limit = 5; // limit the number of rows per page
+                    $offset = 0; // initial offset
+                    $total_rows = 0; // total number of rows
+                    $total_pages = 0; // total number of pages
+
+                    // query to get the total number of rows
+                    $query = "SELECT * FROM users WHERE role_id = 1";
+                    $result = $conn->query($query);
+                    $total_rows = $result->num_rows;
+
+                    // calculate the total number of pages
+                    $total_pages = ceil($total_rows / $limit);
+
+                    // get the current page number
+                    $current_page = isset($_GET['page']) ? $_GET['page'] : 1;
+                    $offset = ($current_page - 1) * $limit;
+
+                    // query with limit and offset
+                    $query = "SELECT * FROM users WHERE role_id = 1 LIMIT $offset, $limit";
+                    $result = $conn->query($query);
+
+                    ?>
+                    <?php
+                    $counter = 1; // initialize the counter
+                    while ($row = $result->fetch_assoc()) {
+                      echo "<tr>";
+                      echo "<td>" . $counter . "</td>"; // incremental number
+                      echo "<td>" . $row["first_name"] . "</td>";
+                      echo "<td>" . $row["last_name"] . "</td>";
+                      echo "<td>" . $row["email"] . "</td>";
+                      echo "<td>" . $row["created_at"] . "</td>";
+                      echo "<td>";
+                      if ($row["status"] == 1) {
+                        echo "<label class='badge badge-success'>Active</label>";
+                      } else {
+                        echo "<label class='badge badge-danger'>Inactive</label>";
+                      }
+                      echo "</td>";
+                      echo "<td>";
+                      echo "<a href='#' class='btn btn-primary btn-sm' data-toggle='modal' data-target='#editModal' data-id='". $row["id"]. "'><i class='mdi mdi-pencil'></i> Edit</a>";
+                      echo " ";
+                      echo "<a href='delete.php?id=" . $row["id"] . "' class='btn btn-danger btn-sm'><i class='mdi mdi-delete'></i> Delete</a>";
+                      echo "</td>";
+                      echo "</tr>";
+                      $counter++; // increment the counter
+                    }
+                    ?>
                   </tbody>
+                </table>
+
+                <!-- pagination links -->
+                <ul class='pagination'>
+                  <?php
+                  // previous link
+                  if ($current_page > 1) {
+                    echo "<li><a href='?page=" . ($current_page - 1) . "'>Previous</a></li>";
+                  }
+
+                  // page numbers
+                  for ($i = 1; $i <= $total_pages; $i++) {
+                    $class = ($i == $current_page) ? 'active' : '';
+                    echo "<li class='$class'><a href='?page=$i'>$i</a></li>";
+                  }
+
+                  // next link
+                  if ($current_page < $total_pages) {
+                    echo "<li><a href='?page=" . ($current_page + 1) . "'>Next</a></li>";
+                  }
+
+                  ?>
+                </ul>
+                </tbody>
                 </table>
               </div>
             </div>
           </div>
+          <!-- ... (rest of the code remains the same) ... -->
 
+          <!-- Add a modal dialog box to the same page -->
+          <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="editModalLabel">Edit Administrator</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <!-- Form will be generated dynamically here -->
+                  <form id="edit-form">
+                    <div class="form-group">
+                      <label for="first_name">First Name</label>
+                      <input type="text" class="form-control" id="first_name" name="first_name">
+                    </div>
+                    <div class="form-group">
+                      <label for="last_name">Last Name</label>
+                      <input type="text" class="form-control" id="last_name" name="last_name">
+                    </div>
+                    <div class="form-group">
+                      <label for="email">Email</label>
+                      <input type="email" class="form-control" id="email" name="email">
+                    </div>
+                    <!-- Add more form fields as needed -->
+                    <button type="submit" class="btn btn-primary">Update</button>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+          <!-- ... (rest of the code remains the same) ... -->
 
 
           <?php require '../template/footer.php'; ?>
@@ -182,6 +249,33 @@
     <!-- Custom js for this page -->
     <script src="../sources/js/dashboard.js"></script>
     <script src="../sources/js/todolist.js"></script>
+    <script>
+      $(document).ready(function() {
+        $('a[data-toggle="modal"]').on('click', function() {
+          var id = $(this).attr('data-id'); // Use attr() instead of data()
+          $.ajax({
+            type: 'GET',
+            url: 'updateadmin.php?id=' + id, // Pass the id parameter in the URL
+            success: function(data) {
+              var formData = JSON.parse(data);
+              $('#edit-form').find('input[name="first_name"]').val(formData.first_name);
+              $('#edit-form').find('input[name="last_name"]').val(formData.last_name);
+              $('#edit-form').find('input[name="email"]').val(formData.email);
+              // Populate other form fields as needed
+              $('#editModal').modal('show');
+            }
+          });
+        });
+      });
+    </script>
+    <script>
+  $('#editModal').on('hidden.bs.modal', function() {
+    $(this).removeClass('show');
+    $('body').removeClass('modal-open');
+    $('.modal-backdrop').remove();
+  });
+</script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <!-- End custom js for this page -->
 </body>
 
