@@ -13,6 +13,18 @@
   <!-- End layout styles -->
   <link rel="shortcut icon" href="../sources/images/favicon.ico" />
   <style>
+
+.custom-close {
+            background-color: transparent; /* Red background */
+            color: red; /* White text */
+            border-radius: 50%;
+            padding: 5px 10px;
+            border: none;
+            font-size: 24px; 
+        }
+        .custom-close:hover {
+            background-color: transparent; /* Darker red on hover */
+        }
     /* pagination styles */
     .pagination {
       list-style: none;
@@ -111,7 +123,7 @@
                   </thead>
                   <tbody>
                     <?php
-                    include 'updateadmin.php';
+                    include 'usermodalcontroller.php';
                     $limit = 5; // limit the number of rows per page
                     $offset = 0; // initial offset
                     $total_rows = 0; // total number of rows
@@ -196,7 +208,7 @@
               <div class="modal-content">
                 <div class="modal-header">
                   <h5 class="modal-title" id="editModalLabel">Edit Administrator</h5>
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <button type="button" class="close custom-close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                   </button>
                 </div>
@@ -255,7 +267,7 @@
           var id = $(this).attr('data-id'); // Use attr() instead of data()
           $.ajax({
             type: 'GET',
-            url: 'updateadmin.php?id=' + id, // Pass the id parameter in the URL
+            url: 'usermodalcontroller.php?id=' + id, // Pass the id parameter in the URL
             success: function(data) {
               var formData = JSON.parse(data);
               $('#edit-form').find('input[name="first_name"]').val(formData.first_name);
