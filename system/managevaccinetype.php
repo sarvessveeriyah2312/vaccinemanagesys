@@ -78,7 +78,7 @@
         <div class="content-wrapper">
           <div class="page-header">
             <h3 class="page-title">
-              </span> Manage Vaccinee
+              </span> Manage Vaccine Type
             </h3>
             <nav aria-label="breadcrumb">
               <ul class="breadcrumb">
@@ -91,11 +91,11 @@
           <div class="col-lg-12 grid-margin stretch-card">
             <div class="card">
               <div class="card-body">
-                <h4 class="card-title">Vaccinee</h4>
+                <h4 class="card-title">Vaccine Type</h4>
                 <p class="card-description" style="display: flex; align-items: center; justify-content: space-between;">
-                  Easily add, update, and remove vaccinee users.
+                  Easily add, update, and remove vaccine type.
                   <button type="button" class="btn btn-gradient-success btn-rounded btn-fw btn-sm" data-toggle="modal" data-target="#createModal">
-                    <i class="mdi mdi-account-plus"></i> Create New Vaccinee
+                    <i class="mdi mdi-account-plus"></i> Create New Vaccine Type
                   </button>
                 </p>
                 <?php
@@ -140,7 +140,7 @@
                     $total_pages = 0; // total number of pages
 
                     // query to get the total number of rows
-                    $query = "SELECT * FROM users WHERE role_id = 3";
+                    $query = "SELECT * FROM users WHERE role_id = 1";
                     $result = $conn->query($query);
                     $total_rows = $result->num_rows;
 
@@ -152,7 +152,7 @@
                     $offset = ($current_page - 1) * $limit;
 
                     // query with limit and offset
-                    $query = "SELECT * FROM users WHERE role_id = 3 LIMIT $offset, $limit";
+                    $query = "SELECT * FROM users WHERE role_id = 1 LIMIT $offset, $limit";
                     $result = $conn->query($query);
 
                     ?>
@@ -216,7 +216,7 @@
             <div class="modal-dialog" role="document">
               <div class="modal-content">
                 <div class="modal-header">
-                  <h5 class="modal-title" id="createModalLabel">Create New Vaccinee</h5>
+                  <h5 class="modal-title" id="createModalLabel">Create New Administrator</h5>
                   <button type="button" class="close custom-close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                   </button>
@@ -244,7 +244,7 @@
                       <label for="email">Email</label>
                       <input type="email" class="form-control" id="email" name="email">
                     </div>
-                    <input type="text" class="form-control" id="role_id" name="role_id" value="3" hidden>
+                    <input type="text" class="form-control" id="role_id" name="role_id" value="1" hidden>
                     <!-- Add more form fields as needed -->
                     <button type="submit" class="btn btn-primary">Create</button>
                   </form>
@@ -258,7 +258,7 @@
             <div class="modal-dialog" role="document">
               <div class="modal-content">
                 <div class="modal-header">
-                  <h5 class="modal-title" id="editModalLabel">Edit Vaccinee</h5>
+                  <h5 class="modal-title" id="editModalLabel">Edit Administrator</h5>
                   <button type="button" class="close custom-close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                   </button>
@@ -274,10 +274,9 @@
                       <label for="last_name">Last Name</label>
                       <input type="text" class="form-control" id="last_name" name="last_name">
                     </div>
-
                     <div class="form-group">
-                      <label for="last_name">Email</label>
-                      <input type="text" class="form-control" id="email" name="email">
+                      <label for="email">Email</label>
+                      <input type="email" class="form-control" id="email" name="email">
                     </div>
                     <div class="form-group">
                       <label for="status">Status</label>
@@ -291,6 +290,8 @@
         <input type="password" class="form-control" id="password" name="password">
         <span class="password-instruction">Please re-enter your password for changes verification or enter a new password for changing password.</span>
     </div>
+
+                    
                     <!-- Add more form fields as needed -->
                     <button type="submit" class="btn btn-primary">Update</button>
                   </form>
@@ -395,7 +396,7 @@
               $('#edit-form').find('input[name="last_name"]').val(formData.last_name);
               $('#edit-form').find('input[name="email"]').val(formData.email);
               $('#edit-form').find('input[name="password"]').val(formData.password);
-              $('#edit-form').find('input[name="status"]').val(formData.status);
+              $('#edit-form').find('input[name="status"]').val(formData.status); 
               // Populate other form fields as needed
               $('#editModal').modal('show');
             }

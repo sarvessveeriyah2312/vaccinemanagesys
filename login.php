@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
+
 <head>
   <meta charset="UTF-8">
   <title>Login and Registration Form in HTML & CSS | CodingLab</title>
@@ -10,6 +11,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.css">
 </head>
+
 <body>
   <div class="container">
     <input type="checkbox" id="flip">
@@ -35,7 +37,7 @@
           <form action="backend/loginbackend.php" method="post">
             <div class="input-boxes">
               <div class="input-box">
-              <i class="fas fa-id-card"></i>
+                <i class="fas fa-id-card"></i>
                 <input type="text" name="username" id="username" placeholder="Enter your Username" required>
               </div>
               <div class="input-box">
@@ -58,78 +60,84 @@
 
   <!-- Add JavaScript code to trigger SweetAlert 2 -->
   <script>
-document.querySelector('form[action="backend/loginbackend.php"]').addEventListener('submit', function(event) {
-    event.preventDefault();
-    var formData = new FormData(this);
-    var xhr = new XMLHttpRequest();
-    xhr.open('POST', 'backend/loginbackend.php', true);
-    xhr.onload = function() {
+    document.querySelector('form[action="backend/loginbackend.php"]').addEventListener('submit', function(event) {
+      event.preventDefault();
+      var formData = new FormData(this);
+      var xhr = new XMLHttpRequest();
+      xhr.open('POST', 'backend/loginbackend.php', true);
+      xhr.onload = function() {
         if (xhr.status === 200) {
-            try {
-                var response = JSON.parse(xhr.responseText);
-                console.log('Response:', response);  // Log the full response for debugging
-                if (response.success) {
-                    var role = response.role;
-                    var successMessage = 'Login Successful!';
-                    
-                    if (role === 1) {
-                        successMessage = 'You have successfully logged in as an Admin.';
-                    } else if (role === 3) {
-                        successMessage = 'You have successfully logged in as a User.';
-                    } else if (role === 2) {
-                        successMessage = 'You have successfully logged in as a Vaccinator.';
-                    }
-                    
-                    Swal.fire({
-                        title: 'Login Successful!',
-                        text: successMessage,
-                        icon: 'success',
-                        confirmButtonText: 'OK'
-                    }).then(function() {
-                        window.location.href = response.redirect;
-                    });
-                } else {
-                    Swal.fire({
-                        title: 'Error!',
-                        text: response.message,
-                        icon: 'error',
-                        confirmButtonText: 'OK'
-                    });
-                }
-            } catch (e) {
-                console.error('Error parsing JSON response:', e);
-                console.log('Response:', xhr.responseText);  // Log the full response
-                Swal.fire({
-                    title: 'Error!',
-                    text: 'An error occurred. Please try again.',
-                    icon: 'error',
-                    confirmButtonText: 'OK'
-                });
-            }
-        } else {
-            Swal.fire({
+          try {
+            var response = JSON.parse(xhr.responseText);
+            console.log('Response:', response); // Log the full response for debugging
+            if (response.success) {
+              var role = response.role;
+              var successMessage = 'Login Successful!';
+
+              if (role === 1) {
+                successMessage = 'You have successfully logged in as an Admin.';
+              } else if (role === 3) {
+                successMessage = 'You have successfully logged in as a User.';
+              } else if (role === 2) {
+                successMessage = 'You have successfully logged in as a Vaccinator.';
+              }
+
+              Swal.fire({
+                title: 'Login Successful!',
+                text: successMessage,
+                icon: 'success',
+                confirmButtonText: 'OK'
+              }).then(function() {
+                window.location.href = response.redirect;
+              });
+            } else {
+              Swal.fire({
                 title: 'Error!',
-                text: 'An error occurred. Please try again.',
+                text: response.message,
                 icon: 'error',
                 confirmButtonText: 'OK'
+              }).then(function() {
+                location.reload(); // Reload the page after the user presses OK
+              });
+            }
+          } catch (e) {
+            console.error('Error parsing JSON response:', e);
+            console.log('Response:', xhr.responseText); // Log the full response
+            Swal.fire({
+              title: 'Error!',
+              text: 'An error occurred. Please try again.',
+              icon: 'error',
+              confirmButtonText: 'OK'
+            }).then(function() {
+              location.reload(); // Reload the page after the user presses OK
             });
+          }
+        } else {
+          Swal.fire({
+            title: 'Error!',
+            text: 'An error occurred. Please try again.',
+            icon: 'error',
+            confirmButtonText: 'OK'
+          }).then(function() {
+            location.reload(); // Reload the page after the user presses OK
+          });
         }
-    };
-    xhr.send(formData);
-});
+      };
+      xhr.send(formData);
+    });
 
-// Example: Show an error alert when the signup form is submitted
-document.querySelector('form[action="register.php"]').addEventListener('submit', function(event) {
-    event.preventDefault();
-    Swal.fire({
+    // Example: Show an error alert when the signup form is submitted
+    document.querySelector('form[action="register.php"]').addEventListener('submit', function(event) {
+      event.preventDefault();
+      Swal.fire({
         title: 'Error!',
         text: 'Something went wrong. Please try again.',
         icon: 'error',
         confirmButtonText: 'OK'
+      });
     });
-});
-
-</script>
+  </script>
 
 </body>
+
 </html>

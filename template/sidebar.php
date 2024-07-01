@@ -38,28 +38,42 @@
                         <li class="nav-item"> <a class="nav-link" href="manageusers.php">Manage Vaccinee</a></li>
                     </ul>
                 </div>
+            <li class="nav-item">
+                <a class="nav-link" href="managevaccinecenter.php">
+                    <span class="menu-title">Vaccination Center</span>
+                    <i class="mdi mdi-map-marker menu-icon"></i>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="managevaccinetype.php">
+                    <span class="menu-title">Vaccine Type</span>
+                    <i class="mdi mdi-needle menu-icon"></i>
+                </a>
+            </li>
             </li>
         <?php endif; ?>
 
-        <?php if ($user['role_id'] == 2): // Staff ?>
-                <!-- <li class="nav-item">
+        <?php if ($user['role_id'] == 2) : // Staff 
+        ?>
+            <!-- <li class="nav-item">
                     <a class="nav-link" href="staff_specific_page.php">
                         <span class="menu-title">Staff Page</span>
                         <i class="mdi mdi-account-box menu-icon"></i>
                     </a>
                 </li>
                 Add more staff-specific menu items here -->
-            <?php endif; ?>
+        <?php endif; ?>
 
-            <?php if ($user['role_id'] == 3): // User ?>
-                <!-- <li class="nav-item">
+        <?php if ($user['role_id'] == 3) : // User 
+        ?>
+            <!-- <li class="nav-item">
                     <a class="nav-link" href="user_specific_page.php">
                         <span class="menu-title">User Page</span>
                         <i class="mdi mdi-account menu-icon"></i>
                     </a>
                 </li>
                 Add more user-specific menu items here -->
-            <?php endif; ?>
+        <?php endif; ?>
         <!-- <li class="nav-item">
             <a class="nav-link" href="pages/icons/mdi.html">
                 <span class="menu-title">Icons</span>
