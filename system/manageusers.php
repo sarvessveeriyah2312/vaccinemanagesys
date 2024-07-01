@@ -125,6 +125,7 @@
                       <th> # </th>
                       <th> First name </th>
                       <th> Last name </th>
+                      <th> Username</th>
                       <th> Email </th>
                       <th> Created At </th>
                       <th> Status </th>
@@ -163,6 +164,7 @@
                       echo "<td>" . $counter . "</td>"; // incremental number
                       echo "<td>" . $row["first_name"] . "</td>";
                       echo "<td>" . $row["last_name"] . "</td>";
+                      echo "<td>" . $row["username"] . "</td>";
                       echo "<td>" . $row["email"] . "</td>";
                       echo "<td>" . $row["created_at"] . "</td>";
                       echo "<td>";
