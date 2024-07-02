@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 01, 2024 at 07:44 PM
+-- Generation Time: Jul 02, 2024 at 06:15 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -78,12 +78,14 @@ INSERT INTO `sessions` (`session_id`, `user_id`, `username`, `email`, `expires`,
 ('ba7212301166468109ff9fc8ffe9249b', 3, 'staff', 'vaccinator@example.com', 1719855625, '{\"login_status\":true,\"expiry_date\":\"2024-07-01 19:40:25\"}', '2024-07-01 16:40:25', '2024-07-01 16:40:25'),
 ('bb4cd1045ef66d71ea0c12dbddc56a39', 2, 'admin', 'admin@example.com', 1719421307, '{\"login_status\":true,\"expiry_date\":\"2024-06-26 19:01:47\"}', '2024-06-26 16:01:47', '2024-06-26 16:01:47'),
 ('bd001e123a5c7ca1f305a2533b0b64d6', 2, 'admin', 'admin@example.com', 1719419545, '{\"login_status\":true,\"expiry_date\":\"2024-06-26 18:32:25\"}', '2024-06-26 15:32:25', '2024-06-26 15:32:25'),
+('c90189c318ca5ff83131ef4a1ef45ecc', 2, 'admin', 'admin@gmail.com', 1719859786, '{\"login_status\":true,\"expiry_date\":\"2024-07-01 20:49:46\"}', '2024-07-01 17:49:46', '2024-07-01 17:49:46'),
 ('ce8a392c742426dce5f3e18ad0bc8dca', 3, 'staff', 'vaccinator@example.com', 1719426461, '{\"login_status\":true,\"expiry_date\":\"2024-06-26 20:27:41\"}', '2024-06-26 17:27:41', '2024-06-26 17:27:41'),
 ('d4877c78b879d195ec42fe93972e6af1', 2, 'admin', 'admin@gmail.com', 1719859112, '{\"login_status\":true,\"expiry_date\":\"2024-07-01 20:38:32\"}', '2024-07-01 17:38:32', '2024-07-01 17:38:32'),
 ('d7691379ac8dc6d1dbf4b3ae7aca5295', 2, 'admin', 'admin@example.com', 1719426678, '{\"login_status\":true,\"expiry_date\":\"2024-06-26 20:31:18\"}', '2024-06-26 17:31:18', '2024-06-26 17:31:18'),
 ('d903dd9ecbb4b63c1516ccbd0ef90f02', 2, 'admin', 'admin@example.com', 1719514547, '{\"login_status\":true,\"expiry_date\":\"2024-06-27 20:55:47\"}', '2024-06-27 17:55:47', '2024-06-27 17:55:47'),
 ('de45ba5ec38d02d27823a6210885cd14', 1, 'user', 'johndoe@example.com', 1719426477, '{\"login_status\":true,\"expiry_date\":\"2024-06-26 20:27:57\"}', '2024-06-26 17:27:57', '2024-06-26 17:27:57'),
 ('e3e99f95b64e56484c81a2c59e1c566a', 1, 'user', 'johndoe@example.com', 1719423474, '{\"login_status\":true,\"expiry_date\":\"2024-06-26 19:37:54\"}', '2024-06-26 16:37:54', '2024-06-26 16:37:54'),
+('eba6ae51143f1f45f43a49be4d2a4069', 2, 'admin', 'admin@gmail.com', 1719929823, '{\"login_status\":true,\"expiry_date\":\"2024-07-02 16:17:03\"}', '2024-07-02 13:17:03', '2024-07-02 13:17:03'),
 ('ed1c5f2b80aa3398545139be4cc382f8', 2, 'admin', 'admin@gmail.com', 1719855634, '{\"login_status\":true,\"expiry_date\":\"2024-07-01 19:40:34\"}', '2024-07-01 16:40:34', '2024-07-01 16:40:34'),
 ('f0ad660b68548b2bb16772c4d4c7de7d', 2, 'admin', 'admin@example.com', 1719421334, '{\"login_status\":true,\"expiry_date\":\"2024-06-26 19:02:14\"}', '2024-06-26 16:02:14', '2024-06-26 16:02:14'),
 ('f7505168bb4f0fde5fe07f543cabd02e', 2, 'admin', 'admin@gmail.com', 1719859032, '{\"login_status\":true,\"expiry_date\":\"2024-07-01 20:37:12\"}', '2024-07-01 17:37:12', '2024-07-01 17:37:12'),
@@ -116,9 +118,33 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `email`, `first_name`, `last_name`, `role_id`, `status`, `password`, `created_at`, `updated_at`, `last_login_at`) VALUES
-(1, 'user', 'arun@gmail.com', 'Arun', 'Selva', 3, 1, '$2y$10$JaWACnJS51MvSMUw8hI2d.JIGPQynz6rMU0d/p6g9HPxW8pTT2.dC', '2024-06-24 15:33:33', '2024-07-01 17:00:07', '2024-06-27 15:35:02'),
-(2, 'admin', 'admin@gmail.com', 'Administrator', '', 1, 1, '$2y$10$7WIyqO/D7vAoz8W0eTnT4uuFoF0iiVFQdBW0xAfSjdDncgqCDj9dK', '2024-06-24 15:33:33', '2024-07-01 17:38:32', '2024-07-01 17:38:32'),
+(2, 'admin', 'admin@gmail.com', 'Super', 'Admin', 1, 1, '$2y$10$kaakb6ClfKBmAE1ZGn2ZJestBwtYO7FmbFAkhjypXXdjKEMKOtfzi', '2024-06-24 15:33:33', '2024-07-02 13:17:03', '2024-07-02 13:17:03'),
 (60, 'staff', 'Vaccinators@gmail.com', 'Staff', 'Vaccinator', 2, 1, '$2y$10$g8Dz8MgtL2eHRjU5w60NruyrcWWy7sTMc.l9mPXxghRH8fKrfHGZm', '2024-07-01 17:38:11', '2024-07-01 17:38:25', '2024-07-01 17:38:25');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `vaccinationcenter`
+--
+
+CREATE TABLE `vaccinationcenter` (
+  `id` int(11) NOT NULL,
+  `Name` varchar(255) NOT NULL,
+  `Address` varchar(255) NOT NULL,
+  `PhoneNumber` varchar(20) NOT NULL,
+  `Email` varchar(100) NOT NULL,
+  `Capacity` int(11) NOT NULL,
+  `VaccineType` int(100) NOT NULL,
+  `CreatedAt` timestamp NOT NULL DEFAULT current_timestamp(),
+  `UpdatedAt` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `vaccinationcenter`
+--
+
+INSERT INTO `vaccinationcenter` (`id`, `Name`, `Address`, `PhoneNumber`, `Email`, `Capacity`, `VaccineType`, `CreatedAt`, `UpdatedAt`) VALUES
+(6, 'Putra World Trade Center', 'kuala Lumpur', '0143057131', 'sarvesskuruvi@gmail.com', 90, 3, '2024-07-02 15:59:37', '2024-07-02 16:09:54');
 
 -- --------------------------------------------------------
 
@@ -136,6 +162,14 @@ CREATE TABLE `vaccinetype` (
   `registered_on` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_on` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `vaccinetype`
+--
+
+INSERT INTO `vaccinetype` (`id`, `brand`, `manufacturer`, `manufacturing_date`, `expiry_date`, `batch_no`, `registered_on`, `updated_on`) VALUES
+(2, 'AstraZeneca (Vaxzevria)', 'Oxford', '2024-07-02', '2025-05-03', 'AZ234533434', '2024-07-02 15:09:47', '2024-07-02 15:09:47'),
+(3, 'Moderna (Spikevax)', 'testing', '2024-07-02', '2027-12-17', 'MOD234533434', '2024-07-02 15:10:43', '2024-07-02 15:44:41');
 
 --
 -- Indexes for dumped tables
@@ -156,6 +190,12 @@ ALTER TABLE `users`
   ADD UNIQUE KEY `email` (`email`);
 
 --
+-- Indexes for table `vaccinationcenter`
+--
+ALTER TABLE `vaccinationcenter`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `vaccinetype`
 --
 ALTER TABLE `vaccinetype`
@@ -172,10 +212,16 @@ ALTER TABLE `users`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
 
 --
+-- AUTO_INCREMENT for table `vaccinationcenter`
+--
+ALTER TABLE `vaccinationcenter`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
 -- AUTO_INCREMENT for table `vaccinetype`
 --
 ALTER TABLE `vaccinetype`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
