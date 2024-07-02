@@ -55,12 +55,13 @@
       color: #23527c;
       font-weight: bold;
     }
+
     .password-instruction {
-    display: block;
-    color: red;
-    font-size: 12px;
-    margin-top: 5px;
-}
+      display: block;
+      color: red;
+      font-size: 12px;
+      margin-top: 5px;
+    }
   </style>
 </head>
 
@@ -123,24 +124,26 @@
                   <thead>
                     <tr>
                       <th> # </th>
-                      <th> First name </th>
-                      <th> Last name </th>
+                      <th> Name </th>
+                      <th> Address </th>
                       <th> Email </th>
-                      <th> Created At </th>
-                      <th> Status </th>
+                      <th> Capacity </th>
+                      <th> Vaccine </th>
                       <th> Action </th>
                     </tr>
                   </thead>
                   <tbody>
                     <?php
-                    include 'usermodalcontroller.php';
+                    include 'vaccinecentermodalcontroller.php';
                     $limit = 5; // limit the number of rows per page
                     $offset = 0; // initial offset
                     $total_rows = 0; // total number of rows
                     $total_pages = 0; // total number of pages
 
                     // query to get the total number of rows
-                    $query = "SELECT * FROM users WHERE role_id = 1";
+                    $query = "SELECT vc.id AS vc_id, vc.Name, vc.Address, vc.PhoneNumber, vc.Email, vc.Capacity, vt.brand AS VaccineType
+    FROM vaccinationcenter vc
+    JOIN vaccinetype vt ON vc.VaccineType = vt.id";
                     $result = $conn->query($query);
                     $total_rows = $result->num_rows;
 
@@ -152,7 +155,9 @@
                     $offset = ($current_page - 1) * $limit;
 
                     // query with limit and offset
-                    $query = "SELECT * FROM users WHERE role_id = 1 LIMIT $offset, $limit";
+                    $query = "SELECT vc.id AS vc_id, vc.Name, vc.Address, vc.PhoneNumber, vc.Email, vc.Capacity, vt.brand AS VaccineType
+    FROM vaccinationcenter vc
+    JOIN vaccinetype vt ON vc.VaccineType = vt.id LIMIT $offset, $limit";
                     $result = $conn->query($query);
 
                     ?>
@@ -161,21 +166,15 @@
                     while ($row = $result->fetch_assoc()) {
                       echo "<tr>";
                       echo "<td>" . $counter . "</td>"; // incremental number
-                      echo "<td>" . $row["first_name"] . "</td>";
-                      echo "<td>" . $row["last_name"] . "</td>";
-                      echo "<td>" . $row["email"] . "</td>";
-                      echo "<td>" . $row["created_at"] . "</td>";
+                      echo "<td>" . $row["Name"] . "</td>";
+                      echo "<td>" . $row["Address"] . "</td>";
+                      echo "<td>" . $row["Email"] . "</td>";
+                      echo "<td>" . $row["Capacity"] . "</td>";
+                      echo "<td>" . $row["VaccineType"] . "</td>";
                       echo "<td>";
-                      if ($row["status"] == 1) {
-                        echo "<label class='badge badge-success'>Active</label>";
-                      } else {
-                        echo "<label class='badge badge-danger'>Inactive</label>";
-                      }
-                      echo "</td>";
-                      echo "<td>";
-                      echo "<a href='#' class='btn btn-primary btn-sm' data-toggle='modal' data-target='#editModal' data-id='" . $row["id"] . "'><i class='mdi mdi-pencil'></i> Edit</a>";
+                      echo "<a href='#' class='btn btn-primary btn-sm' data-toggle='modal' data-target='#editModal' data-id='" . htmlspecialchars($row["vc_id"]) . "'><i class='mdi mdi-pencil'></i> Edit</a>";
                       echo " ";
-                      echo "<a href='#' class='btn btn-danger btn-sm delete-btn' data-id='" . $row["id"] . "'><i class='mdi mdi-delete'></i> Delete</a>";
+                      echo "<a href='#' class='btn btn-danger btn-sm delete-btn' data-id='" . htmlspecialchars($row["vc_id"]) . "'><i class='mdi mdi-delete'></i> Delete</a>";
                       echo "</td>";
                       echo "</tr>";
                       $counter++; // increment the counter
@@ -216,7 +215,7 @@
             <div class="modal-dialog" role="document">
               <div class="modal-content">
                 <div class="modal-header">
-                  <h5 class="modal-title" id="createModalLabel">Create New Administrator</h5>
+                  <h5 class="modal-title" id="createModalLabel">Create New Vaccination Center</h5>
                   <button type="button" class="close custom-close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                   </button>
@@ -225,26 +224,38 @@
                   <!-- Form will be generated dynamically here -->
                   <form id="create-form">
                     <div class="form-group">
-                      <label for="username">Username</label>
-                      <input type="text" class="form-control" id="username" name="username">
+                      <label for="Name">Name</label>
+                      <input type="text" class="form-control" id="Name" name="Name" required>
                     </div>
                     <div class="form-group">
-                      <label for="password">Password</label>
-                      <input type="password" class="form-control" id="password" name="password">
+                      <label for="Address">Address</label>
+                      <textarea class="form-control" id="Address" name="Address" rows="3" required></textarea>
                     </div>
                     <div class="form-group">
-                      <label for="first_name">First Name</label>
-                      <input type="text" class="form-control" id="first_name" name="first_name">
+                      <label for="PhoneNumber">Phone No</label>
+                      <input type="text" class="form-control" id="PhoneNumber" name="PhoneNumber" required>
                     </div>
                     <div class="form-group">
-                      <label for="last_name">Last Name</label>
-                      <input type="text" class="form-control" id="last_name" name="last_name">
+                      <label for="Email">Email</label>
+                      <input type="email" class="form-control" id="Email" name="Email" required>
                     </div>
                     <div class="form-group">
-                      <label for="email">Email</label>
-                      <input type="email" class="form-control" id="email" name="email">
+                      <label for="Capacity">Capacity</label>
+                      <input type="number" class="form-control" id="Capacity" name="Capacity" required>
                     </div>
-                    <input type="text" class="form-control" id="role_id" name="role_id" value="1" hidden>
+                    <div class="form-group">
+                      <label for="VaccineType">Vaccine</label>
+                      <select name="VaccineType" class="form-control" id="VaccineType" required>
+                        <option value="">Select Vaccine Type</option>
+                        <?php
+                        $query = "SELECT * FROM vaccinetype";
+                        $result = mysqli_query($conn, $query);
+                        while ($row = mysqli_fetch_assoc($result)) {
+                          echo "<option value='" . $row['id'] . "'>" . $row['brand'] . "</option>";
+                        }
+                        ?>
+                      </select>
+                    </div>
                     <!-- Add more form fields as needed -->
                     <button type="submit" class="btn btn-primary">Create</button>
                   </form>
@@ -252,13 +263,12 @@
               </div>
             </div>
           </div>
-
           <!-- Add a modal dialog box to the same page -->
           <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
               <div class="modal-content">
                 <div class="modal-header">
-                  <h5 class="modal-title" id="editModalLabel">Edit Administrator</h5>
+                  <h5 class="modal-title" id="editModalLabel">Edit Vaccination Center</h5>
                   <button type="button" class="close custom-close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                   </button>
@@ -267,31 +277,38 @@
                   <!-- Form will be generated dynamically here -->
                   <form id="edit-form">
                     <div class="form-group">
-                      <label for="first_name">First Name</label>
-                      <input type="text" class="form-control" id="first_name" name="first_name">
+                      <label for="Name">Name</label>
+                      <input type="text" class="form-control" id="Name" name="Name" required>
                     </div>
                     <div class="form-group">
-                      <label for="last_name">Last Name</label>
-                      <input type="text" class="form-control" id="last_name" name="last_name">
+                      <label for="Address">Address</label>
+                      <textarea class="form-control" id="Address" name="Address" rows="3" required></textarea>
                     </div>
                     <div class="form-group">
-                      <label for="email">Email</label>
-                      <input type="email" class="form-control" id="email" name="email">
+                      <label for="PhoneNumber">Phone No</label>
+                      <input type="text" class="form-control" id="PhoneNumber" name="PhoneNumber" required>
                     </div>
                     <div class="form-group">
-                      <label for="status">Status</label>
-                      <select class="form-control" id="status" name="status">
-                        <option value=1>Active</option>
-                        <option value=0>Inactive</option>
+                      <label for="Email">Email</label>
+                      <input type="email" class="form-control" id="Email" name="Email" required>
+                    </div>
+                    <div class="form-group">
+                      <label for="Capacity">Capacity</label>
+                      <input type="number" class="form-control" id="Capacity" name="Capacity" required>
+                    </div>
+                    <div class="form-group">
+                      <label for="VaccineType">Vaccine</label>
+                      <select name="VaccineType" class="form-control" id="VaccineType" required>
+                        <option value="">Select Vaccine Type</option>
+                        <?php
+                        $query = "SELECT * FROM vaccinetype";
+                        $result = mysqli_query($conn, $query);
+                        while ($row = mysqli_fetch_assoc($result)) {
+                          echo "<option value='" . $row['id'] . "'>" . $row['brand'] . "</option>";
+                        }
+                        ?>
                       </select>
                     </div>
-                    <div class="form-group">
-        <label for="password">Password</label>
-        <input type="password" class="form-control" id="password" name="password">
-        <span class="password-instruction">Please re-enter your password for changes verification or enter a new password for changing password.</span>
-    </div>
-
-                    
                     <!-- Add more form fields as needed -->
                     <button type="submit" class="btn btn-primary">Update</button>
                   </form>
@@ -339,7 +356,7 @@
 
           $.ajax({
             type: 'POST',
-            url: 'usermodalcontroller.php',
+            url: 'vaccinecentermodalcontroller.php',
             data: formData,
             headers: {
               'Content-Type': 'application/x-www-form-urlencoded'
@@ -351,8 +368,8 @@
                 if (response.success) {
                   Swal.fire({
                     icon: 'success',
-                    title: 'User created successfully!',
-                    text: 'The user has been created successfully.',
+                    title: 'Vaccination Center created successfully!',
+                    text: 'The Vaccination Center has been created successfully.',
                     confirmButtonText: 'OK'
                   }).then((result) => {
                     if (result.isConfirmed) {
@@ -363,7 +380,7 @@
                 } else {
                   Swal.fire({
                     icon: 'error',
-                    title: 'Error creating user',
+                    title: 'Error creating vaccination center',
                     text: 'Error: ' + response.error,
                     confirmButtonText: 'OK'
                   });
@@ -389,14 +406,15 @@
 
           $.ajax({
             type: 'GET',
-            url: 'usermodalcontroller.php?id=' + id, // Pass the id parameter in the URL
+            url: 'vaccinecentermodalcontroller.php?id=' + id, // Pass the id parameter in the URL
             success: function(data) {
               var formData = JSON.parse(data);
-              $('#edit-form').find('input[name="first_name"]').val(formData.first_name);
-              $('#edit-form').find('input[name="last_name"]').val(formData.last_name);
-              $('#edit-form').find('input[name="email"]').val(formData.email);
-              $('#edit-form').find('input[name="password"]').val(formData.password);
-              $('#edit-form').find('input[name="status"]').val(formData.status); 
+              $('#edit-form').find('input[name="Name"]').val(formData.Name);
+              $('#edit-form').find('textarea[name="Address"]').val(formData.Address);
+              $('#edit-form').find('input[name="PhoneNumber"]').val(formData.PhoneNumber);
+              $('#edit-form').find('input[name="Email"]').val(formData.Email);
+              $('#edit-form').find('input[name="Capacity"]').val(formData.Capacity);
+              $('#edit-form').find('select[name="VaccineType"]').val(formData.VaccineType);
               // Populate other form fields as needed
               $('#editModal').modal('show');
             }
@@ -420,7 +438,7 @@
             if (result.isConfirmed) {
               $.ajax({
                 type: 'DELETE',
-                url: 'usermodalcontroller.php?id=' + id, // Pass the id parameter in the URL
+                url: 'vaccinecentermodalcontroller.php?id=' + id, // Pass the id parameter in the URL
                 success: function(data) {
                   var response = JSON.parse(data);
                   if (response.success) {
@@ -461,7 +479,7 @@
 
         $.ajax({
           type: 'POST',
-          url: 'usermodalcontroller.php',
+          url: 'vaccinecentermodalcontroller.php',
           data: formData,
           headers: {
             'Content-Type': 'application/x-www-form-urlencoded'
@@ -473,8 +491,8 @@
               if (response.success) {
                 Swal.fire({
                   icon: 'success',
-                  title: 'User updated successfully!',
-                  text: 'The user has been updated successfully.',
+                  title: 'Vaccination Center updated successfully!',
+                  text: 'The Vaccination Center has been updated successfully.',
                   confirmButtonText: 'OK'
                 }).then((result) => {
                   if (result.isConfirmed) {
@@ -485,7 +503,7 @@
               } else {
                 Swal.fire({
                   icon: 'error',
-                  title: 'Error updating user',
+                  title: 'Error updating vaccination center',
                   text: 'Error: ' + response.error,
                   confirmButtonText: 'OK'
                 });
