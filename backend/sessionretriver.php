@@ -28,9 +28,6 @@ $result = $stmt->get_result();
 // Fetch the user details
 $user = $result->fetch_assoc();
 
-// Close the statement and connection
-$stmt->close();
-$conn->close();
 
 // Function to get role label
 function getRoleLabel($roleId) {

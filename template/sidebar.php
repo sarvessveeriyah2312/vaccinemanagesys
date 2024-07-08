@@ -66,13 +66,19 @@
 
         <?php if ($user['role_id'] == 3) : // User 
         ?>
-            <!-- <li class="nav-item">
-                    <a class="nav-link" href="user_specific_page.php">
-                        <span class="menu-title">User Page</span>
-                        <i class="mdi mdi-account menu-icon"></i>
-                    </a>
-                </li>
-                Add more user-specific menu items here -->
+           <li class="nav-item">
+                <a class="nav-link" href="bookvaccination.php">
+                    <span class="menu-title">Book Vaccination</span>
+                    <i class="mdi mdi-calendar-check menu-icon"></i>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="vaccinationhistory.php">
+                    <span class="menu-title">Vaccination History</span>
+                    <i class="mdi mdi-folder-outline menu-icon"></i>
+                </a>
+            </li>
+
         <?php endif; ?>
         <!-- <li class="nav-item">
             <a class="nav-link" href="pages/icons/mdi.html">

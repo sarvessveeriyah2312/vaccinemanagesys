@@ -55,12 +55,13 @@
       color: #23527c;
       font-weight: bold;
     }
+
     .password-instruction {
-    display: block;
-    color: red;
-    font-size: 12px;
-    margin-top: 5px;
-}
+      display: block;
+      color: red;
+      font-size: 12px;
+      margin-top: 5px;
+    }
   </style>
 </head>
 
@@ -289,10 +290,10 @@
                       </select>
                     </div>
                     <div class="form-group">
-        <label for="password">Password</label>
-        <input type="password" class="form-control" id="password" name="password">
-        <span class="password-instruction">Please re-enter your password for changes verification or enter a new password for changing password.</span>
-    </div>
+                      <label for="password">Password</label>
+                      <input type="password" class="form-control" id="password" name="password">
+                      <span class="password-instruction">Please re-enter your password for changes verification or enter a new password for changing password.</span>
+                    </div>
                     <!-- Add more form fields as needed -->
                     <button type="submit" class="btn btn-primary">Update</button>
                   </form>
