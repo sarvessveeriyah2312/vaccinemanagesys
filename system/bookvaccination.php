@@ -139,6 +139,12 @@
                                         </div>
                                     </div>
                                     <div class="form-group row">
+                                        <div class="col-md-12">
+                                            <label for="age">Age</label>
+                                            <input type="number" class="form-control" id="age" name="age" value="" >
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
                                         <div class="col-md-6">
                                             <label for="email">Email</label>
                                             <input type="email" class="form-control" id="email" name="email" value="<?php echo htmlspecialchars($user['email']); ?>" >
@@ -338,7 +344,7 @@ $(window).on('load', function() {
                         confirmButtonText: 'OK'
                     }).then((result) => {
                         if (result.isConfirmed) {
-                            window.location.href = '<?php echo $dashboardLink; ?>'; // Redirect to dashboard
+                            window.location.href = 'vaccinationrecord.php'; // Redirect to dashboard
                         }
                     });
                 } else {
@@ -371,13 +377,12 @@ $(window).on('load', function() {
                                 if (response.success) {
                                     Swal.fire({
                                         icon: 'success',
-                                        title: 'User created successfully!',
-                                        text: 'The user has been created successfully.',
+                                        title: 'Successfully Booked Vacciantion Slot',
+                                        text: 'Please wait for booking approval',
                                         confirmButtonText: 'OK'
                                     }).then((result) => {
                                         if (result.isConfirmed) {
-                                            $('#createModal').modal('hide');
-                                            location.reload();
+                                            window.location.href = 'vaccinationrecord.php';
                                         }
                                     });
                                 } else {

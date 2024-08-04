@@ -55,29 +55,44 @@
 
         <?php if ($user['role_id'] == 2) : // Staff 
         ?>
-            <!-- <li class="nav-item">
-                    <a class="nav-link" href="staff_specific_page.php">
-                        <span class="menu-title">Staff Page</span>
-                        <i class="mdi mdi-account-box menu-icon"></i>
-                    </a>
-                </li>
-                Add more staff-specific menu items here -->
+         <li class="nav-item">
+              <li class="nav-item">
+                <a class="nav-link" href="managevaccinerequest.php">
+                    <span class="menu-title">Vacciantion Request</span>
+                    <i class="mdi mdi-needle menu-icon"></i>
+                </a>
+            </li>
+         </li>
+         
         <?php endif; ?>
 
         <?php if ($user['role_id'] == 3) : // User 
         ?>
-           <li class="nav-item">
+            <li class="nav-item">
                 <a class="nav-link" href="bookvaccination.php">
                     <span class="menu-title">Book Vaccination</span>
                     <i class="mdi mdi-calendar-check menu-icon"></i>
                 </a>
-            </li>
+                <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
+                    <span class="menu-title">Vaccination</span>
+                    <i class="menu-arrow"></i>
+                    <i class="mdi mdi-needle menu-icon"></i>
+                </a>
+                <div class="collapse" id="ui-basic">
+                    <ul class="nav flex-column sub-menu">
+                        <li class="nav-item"> <a class="nav-link" href="bookvaccination.php">Book Vaccination</a></li>
+                        <li class="nav-item"> <a class="nav-link" href="managestaff.php">Booking Records</a></li>
+                    </ul>
+                </div>
+
             <li class="nav-item">
                 <a class="nav-link" href="vaccinationhistory.php">
                     <span class="menu-title">Vaccination History</span>
                     <i class="mdi mdi-folder-outline menu-icon"></i>
                 </a>
             </li>
+            </li>
+
 
         <?php endif; ?>
         <!-- <li class="nav-item">
