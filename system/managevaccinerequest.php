@@ -64,6 +64,25 @@
       margin: 0;
 
     }
+
+    .container {
+      width: 30%;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      margin-right: 5px; 
+    }
+    .search-bar {
+  width: 100%;
+  height: 20%;
+  max-width: 700px;
+  display: flex;
+  justify-content: flex-end;
+  border-radius: 20px;
+  border: 1px solid rgba(129, 96, 221);
+  padding: 5px 20px;
+  /* Add some space between the search bar and the right edge */
+}
   </style>
 </head>
 
@@ -96,8 +115,13 @@
               <div class="card-body">
                 <h4 class="card-title">Vaccination Request</h4>
                 <p class="card-description" style="display: flex; align-items: center; justify-content: space-between;">
-                  Easily add, update, and remove vaccine type.
+                  <span>Easily add, update, and remove vaccine type.</span>
+                <div class="container">
+                  <input type="text" class="search-bar" id="search-input" placeholder="Search by booking number">
+                </div>
                 </p>
+
+
                 <?php
                 include '../backend/connection.php';
 
@@ -120,7 +144,6 @@
                 }
                 ?>
                 <div class="input-group mb-3">
-                  <input type="text" class="form-control" id="search-input" placeholder="Search by booking number">
                   <div class="input-group-append">
                   </div>
                 </div>
@@ -172,7 +195,7 @@
                       echo "<td>" . $row["vaccinationdate"] . "</td>";
                       echo "<td>" . date("g:i a", strtotime($row["vaccinationtime"])) . "</td>";
                       echo "<td>";
-                      echo "<button class='btn btn-primary btn-sm' data-id='". $row["id"]. "'><i class='mdi mdi-pencil' style='color: blue; font-size: 24px;'></i></button>";
+                      echo "<button class='btn btn-primary btn-sm' data-id='" . $row["id"] . "'><i class='mdi mdi-pencil' style='color: blue; font-size: 24px;'></i></button>";
                       echo " ";
                       echo "<a href='#' class='btn btn-danger btn-sm delete-btn' data-id='" . $row["id"] . "'><i class='mdi mdi-delete' style='color: red; font-size: 24px;'></i></a>";
                       echo "</td>";
@@ -324,90 +347,92 @@
         });
       });
     </script>
-<script>
-$(document).ready(function() {
-    $('.btn-primary').on('click', function(event) {
-        event.preventDefault();
-        var id = $(this).attr('data-id');
-        console.log('Button clicked with ID:', id);
+    <script>
+      $(document).ready(function() {
+        $('.btn-primary').on('click', function(event) {
+          event.preventDefault();
+          var id = $(this).attr('data-id');
+          console.log('Button clicked with ID:', id);
 
-        if (typeof id === 'undefined' || id === '') {
+          if (typeof id === 'undefined' || id === '') {
             console.error('ID is empty or undefined');
             return;
-        }
+          }
 
-        $.ajax({
+          $.ajax({
             type: 'POST',
             url: 'fetchdata.php',
-            data: { id: id },
+            data: {
+              id: id
+            },
             headers: {
               'Content-Type': 'application/x-www-form-urlencoded'
             },
             dataType: 'json',
             beforeSend: function(xhr) {
-                console.log('Sending request with ID:', id);
+              console.log('Sending request with ID:', id);
             },
             success: function(data) {
-                if (data.success) {
-                    // Store the data in sessionStorage (or localStorage) before redirecting
-                    sessionStorage.setItem('updateData', JSON.stringify(data));
-                    window.location.href = 'updatevaccinationrequest.php';
-                } else {
-                    console.error('Error:', data.message);
-                    // alert('Error fetching data: ' data.message);
-                }
+              if (data.success) {
+                // Store the data in sessionStorage (or localStorage) before redirecting
+                sessionStorage.setItem('updateData', JSON.stringify(data));
+                window.location.href = 'updatevaccinationrequest.php';
+              } else {
+                console.error('Error:', data.message);
+                // alert('Error fetching data: ' data.message);
+              }
             },
             error: function(xhr, status, error) {
-                console.error('Error:', error);
-                alert('An unexpected error occurred. Please try again.');
+              console.error('Error:', error);
+              alert('An unexpected error occurred. Please try again.');
             }
+          });
         });
-    });
-});
-</script>
+      });
+    </script>
 
-<script>
-$(document).ready(function() {
-  $('#search-input').on('keyup', function() {
-    var searchQuery = $(this).val();
-    $.ajax({
-      type: 'GET',
-      url: 'vaccinationslotcontroller.php',
-      data: {
-        search: searchQuery
-      },
-      success: function(data) {
-        var response = JSON.parse(data);
-        if (response.success) {
-          var tableBody = '';
-          $.each(response.data, function(index, item) {
-            tableBody += '<tr>';
-            tableBody += '<td>' + item.booking_no + '</td>';
-            tableBody += '<td>' + item.first_name + '</td>';
-            tableBody += '<td>' + item.last_name + '</td>';
-            tableBody += '<td>' + item.vaccinationdate + '</td>';
-            tableBody += '<td>' + item.vaccinationtime + '</td>';
-            tableBody += '<td>' + item.created_at + '</td>';
-            tableBody += '<td>';
-            tableBody += "<button class='btn btn-primary btn-sm' data-id='" + item.id + "'><i class='mdi mdi-pencil' style='color: blue; font-size: 24px;'></i></button>";
-            tableBody += '<a href="#" class="btn btn-danger btn-sm delete-btn" data-id="' + item.id + '"><i class="mdi mdi-delete" style="color: red; font-size: 24px;"></i></a>';
-            tableBody += '</td>';
-            tableBody += '</tr>';
+    <script>
+      $(document).ready(function() {
+        $('#search-input').on('keyup', function() {
+          var searchQuery = $(this).val();
+          $.ajax({
+            type: 'GET',
+            url: 'vaccinationslotcontroller.php',
+            data: {
+              search: searchQuery
+            },
+            success: function(data) {
+              var response = JSON.parse(data);
+              if (response.success) {
+                var tableBody = '';
+                $.each(response.data, function(index, item) {
+                  tableBody += '<tr>';
+                  tableBody += '<td>' + item.booking_no + '</td>';
+                  tableBody += '<td>' + item.first_name + '</td>';
+                  tableBody += '<td>' + item.last_name + '</td>';
+                  tableBody += '<td>' + item.vaccinationdate + '</td>';
+                  tableBody += '<td>' + item.vaccinationtime + '</td>';
+                  tableBody += '<td>' + item.created_at + '</td>';
+                  tableBody += '<td>';
+                  tableBody += "<button class='btn btn-primary btn-sm' data-id='" + item.id + "'><i class='mdi mdi-pencil' style='color: blue; font-size: 24px;'></i></button>";
+                  tableBody += '<a href="#" class="btn btn-danger btn-sm delete-btn" data-id="' + item.id + '"><i class="mdi mdi-delete" style="color: red; font-size: 24px;"></i></a>';
+                  tableBody += '</td>';
+                  tableBody += '</tr>';
+                });
+                $('#usertable tbody').html(tableBody);
+              } else {
+                Swal.fire({
+                  icon: 'error',
+                  title: 'Error searching booking number',
+                  // text: 'Error: ' response.error,
+                  confirmButtonText: 'OK'
+                });
+              }
+            }
           });
-          $('#usertable tbody').html(tableBody);
-        } else {
-          Swal.fire({
-            icon: 'error',
-            title: 'Error searching booking number',
-            // text: 'Error: ' response.error,
-            confirmButtonText: 'OK'
-          });
-        }
-      }
-    });
-  });
-});
-</script>
+        });
+      });
+    </script>
     <script>
       $('#editModal').on('hidden.bs.modal', function() {
         $(this).removeClass('show');
