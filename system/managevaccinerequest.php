@@ -70,19 +70,20 @@
       display: flex;
       align-items: center;
       justify-content: flex-end;
-      margin-right: 5px; 
+      margin-right: 5px;
     }
+
     .search-bar {
-  width: 100%;
-  height: 20%;
-  max-width: 700px;
-  display: flex;
-  justify-content: flex-end;
-  border-radius: 20px;
-  border: 1px solid rgba(129, 96, 221);
-  padding: 5px 20px;
-  /* Add some space between the search bar and the right edge */
-}
+      width: 100%;
+      height: 20%;
+      max-width: 700px;
+      display: flex;
+      justify-content: flex-end;
+      border-radius: 20px;
+      border: 1px solid rgba(129, 96, 221);
+      padding: 5px 20px;
+      /* Add some space between the search bar and the right edge */
+    }
   </style>
 </head>
 
@@ -126,19 +127,19 @@
                 include '../backend/connection.php';
 
                 // Restrict access based on role
-                if (!isset($_SESSION['role_id']) || $_SESSION['role_id'] != 2) {
+                if (!isset($_SESSION['role_id']) || ($_SESSION['role_id'] != 1 && $_SESSION['role_id'] != 2)) {
                   echo '<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>';
                   echo '<script type="text/javascript">';
                   echo 'Swal.fire({
-                          icon: "error",
-                          title: "Access Denied",
-                          text: "You do not have access to this page.",
-                          confirmButtonText: "OK"
-                      }).then((result) => {
-                          if (result.isConfirmed) {
-                              window.location.href = "' . $dashboardLink . '";
-                          }
-                      });';
+          icon: "error",
+          title: "Access Denied",
+          text: "You do not have access to this page.",
+          confirmButtonText: "OK"
+      }).then((result) => {
+          if (result.isConfirmed) {
+              window.location.href = "' . $dashboardLink . '";
+          }
+      });';
                   echo '</script>';
                   exit();
                 }
@@ -405,8 +406,10 @@
               var response = JSON.parse(data);
               if (response.success) {
                 var tableBody = '';
+                let counter = 1;
                 $.each(response.data, function(index, item) {
                   tableBody += '<tr>';
+                  tableBody += '<td>' + counter + '</td>';
                   tableBody += '<td>' + item.booking_no + '</td>';
                   tableBody += '<td>' + item.first_name + '</td>';
                   tableBody += '<td>' + item.last_name + '</td>';

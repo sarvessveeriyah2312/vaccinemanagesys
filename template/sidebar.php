@@ -50,6 +50,14 @@
                     <i class="mdi mdi-needle menu-icon"></i>
                 </a>
             </li>
+            <li class="nav-item">
+              <li class="nav-item">
+                <a class="nav-link" href="managevaccinerequest.php">
+                    <span class="menu-title">Vacciantion Request</span>
+                    <i class="mdi mdi-needle menu-icon"></i>
+                </a>
+            </li>
+         </li>
             </li>
         <?php endif; ?>
 
@@ -81,7 +89,7 @@
                 <div class="collapse" id="ui-basic">
                     <ul class="nav flex-column sub-menu">
                         <li class="nav-item"> <a class="nav-link" href="bookvaccination.php">Book Vaccination</a></li>
-                        <li class="nav-item"> <a class="nav-link" href="managestaff.php">Booking Records</a></li>
+                        <li class="nav-item"> <a class="nav-link" href="vaccinationrecord.php">Booking Records</a></li>
                     </ul>
                 </div>
 

@@ -1,5 +1,3 @@
-<?php
-?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -104,7 +102,7 @@
                     <div class="col-lg-12 grid-margin stretch-card">
                         <div class="card">
                             <div class="card-body">
-                            <h4 class="card-title" id="booking_title">Vaccination Booking <span id="booking_number"></span></h4>
+                                <h4 class="card-title" id="booking_title">Vaccination Booking <span id="booking_number"></span></h4>
                                 <p class="card-description" style="display: flex; align-items: center; justify-content: space-between;">
                                     Book your vaccination slot here based on your preferrence.
                                 </p>
@@ -114,7 +112,6 @@
                                             <label for="first_name">First Name</label>
                                             <input type="text" class="form-control" id="first_name" name="first_name" disabled>
                                         </div>
-                                       
                                         <div class="col-md-6">
                                             <label for="last_name">Last Name</label>
                                             <input type="text" class="form-control" id="last_name" name="last_name" disabled>
@@ -128,7 +125,7 @@
                                         <div class="col-md-6">
                                             <label for="gender">Gender</label>
                                             <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="radio" name="gender" id="gender_female" value="Female" disabled> 
+                                                <input class="form-check-input" type="radio" name="gender" id="gender_female" value="Female" disabled>
                                                 <label class="form-check-label" for="gender_female">Female</label>
                                             </div>
                                             <div class="form-check form-check-inline">
@@ -146,7 +143,7 @@
                                     <div class="form-group row">
                                         <div class="col-md-6">
                                             <label for="email">Email</label>
-                                            <input type="email" class="form-control" id="email" name="email"  disabled>
+                                            <input type="email" class="form-control" id="email" name="email" disabled>
                                         </div>
                                         <div class="col-md-6">
                                             <label for="birth_date">D.O.B</label>
@@ -281,11 +278,15 @@
                                             <input type="time" name="vaccinationtime" class="form-control" id="vaccinationtime" disabled>
                                         </div>
                                     </div>
+                                   <input type="hidden" id="id" name="id">
+    <!-- Approve and Reject buttons -->
+    <button type="button" class="btn btn-gradient-success btn-rounded btn-fw btn-sm" data-toggle="modal" data-target="#createModal" id="approveButton">
+        <i class="fas fa-check"></i> Approve 
+    </button>
 
-
-                                    <button type="submit" class="btn btn-gradient-success btn-rounded btn-fw btn-sm" data-toggle="modal" data-target="#createModal">
-                                        Book Vaccination Slot
-                                    </button>
+    <button type="button" class="btn btn-gradient-danger btn-rounded btn-fw btn-sm" data-toggle="modal" data-target="#rejectModal" id="rejectButton">
+        <i class="fas fa-times"></i> Reject 
+    </button>
                                 </form>
                             </div>
                         </div>
@@ -298,6 +299,49 @@
             <!-- page-body-wrapper ends -->
         </div>
         <!-- container-scroller -->
+
+        <!-- Approve Modal -->
+        <div class="modal fade" id="createModal" tabindex="-1" role="dialog" aria-labelledby="createModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="createModalLabel">Approve Vaccination Booking</h5>
+                        <button type="button" class="close custom-close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        Are you sure you want to approve this booking?
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-success" id="confirmApprove">Approve</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Reject Modal -->
+        <div class="modal fade" id="rejectModal" tabindex="-1" role="dialog" aria-labelledby="rejectModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="rejectModalLabel">Reject Vaccination Booking</h5>
+                        <button type="button" class="close custom-close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        Are you sure you want to reject this booking?
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-danger" id="confirmReject">Reject</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <!-- plugins:js -->
         <script src="../sources/vendors/js/vendor.bundle.base.js"></script>
         <!-- endinject -->
@@ -315,7 +359,7 @@
         <script src="../sources/js/todolist.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <script>
- $(document).ready(function() {
+$(document).ready(function() {
     console.log('Checking sessionStorage:', sessionStorage.getItem('updateData'));
     var storedData = JSON.parse(sessionStorage.getItem('updateData'));
     console.log('Parsed storedData:', storedData);
@@ -324,6 +368,7 @@
         var updateData = storedData.data;
         try {
             // Populate the form fields with the data
+            $('#id').val(updateData.id);
             $('#first_name').val(updateData.first_name);
             $('#last_name').val(updateData.last_name);
             $('#idnumber').val(updateData.idnumber);
@@ -383,8 +428,131 @@
         alert('Error loading data for update');
     }
 });
-        </script>
+</script>
+<script>
+$(document).ready(function() {
+    // Approve button click event handler
+    $('.btn-gradient-success').on('click', function() {
+        var id = $('#id').val();
+        console.log('Button clicked with id:', id);
+        $('#createModal').modal('show');
+        // Set the id value in the modal
+        $('#id').val(id);
+    });
 
+    // Reject button click event handler
+    $('.btn-gradient-danger').on('click', function() {
+        var id = $('#id').val();
+        console.log('Button clicked with id:', id);
+        $('#rejectModal').modal('show');
+        // Set the id value in the modal
+        $('#id').val(id);
+    });
+
+    $('#confirmApprove').click(function(event) {
+    event.preventDefault();
+    var id = $('#id').val();
+    // Set the status to 1 (approved)
+    var status = 1;
+    $.ajax({
+        url: 'updatestatuscontroller.php',
+        type: 'POST',
+        data: {
+            id: id,
+            status: status
+        },
+        success: function(response) {
+            if (response.success) {
+                console.log(response.message);
+                $('#createModal').modal('hide').data('bs.modal', null);
+                $('body').removeClass('modal-open');
+                // Optionally, refresh the page or redirect the user
+                // location.reload();
+            } else {
+                console.error(response.error);
+                if (response.missing_fields) {
+                    console.log('Missing fields:', response.missing_fields);
+                }
+                // alert('An error occurred: ' response.error);
+            }
+        },
+        error: function(xhr, status, error) {
+            // Handle any errors
+            console.error(error);
+            alert('An error occurred while updating the status.');
+        }
+    });
+});
+
+$('#confirmApprove').click(function(event) {
+    event.preventDefault();
+    var id = $('#id').val();
+    // Set the status to 1 (approved)
+    var status = 1;
+    $.ajax({
+        url: 'updatestatuscontroller.php',
+        type: 'POST',
+        data: {
+            id: id,
+            status: status
+        },
+        success: function(response) {
+            if (response.success) {
+                console.log(response.message);
+                $('#createModal').modal('hide').data('bs.modal', null);
+                $('body').removeClass('modal-open');
+                window.location.href = 'managevaccinerequest.php'; // Redirect to managevaccinerequest.php
+            } else {
+                console.error(response.error);
+                if (response.missing_fields) {
+                    console.log('Missing fields:', response.missing_fields);
+                }
+                // alert('An error occurred: 'esponse.error);
+            }
+        },
+        error: function(xhr, status, error) {
+            // Handle any errors
+            console.error(error);
+            alert('An error occurred while updating the status.');
+        }
+    });
+});
+
+$('#confirmReject').click(function(event) {
+    event.preventDefault();
+    var id = $('#id').val();
+    // Set the status to 2 (rejected)
+    var status = 2;
+    $.ajax({
+        url: 'updatestatuscontroller.php',
+        type: 'POST',
+        data: {
+            id: id,
+            status: status
+        },
+        success: function(response) {
+            if (response.success) {
+                console.log(response.message);
+                $('#rejectModal').modal('hide').data('bs.modal', null);
+                $('body').removeClass('modal-open');
+                window.location.href = 'managevaccinerequest.php'; // Redirect to managevaccinerequest.php
+            } else {
+                console.error(response.error);
+                if (response.missing_fields) {
+                    console.log('Missing fields:', response.missing_fields);
+                }
+                // alert('An error occurred: 'esponse.error);
+            }
+        },
+        error: function(xhr, status, error) {
+            // Handle any errors
+            console.error(error);
+            alert('An error occurred while updating the status.');
+        }
+    });
+});
+});
+</script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
         <!-- End custom js for this page -->
 </body>
