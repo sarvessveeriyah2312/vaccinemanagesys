@@ -101,7 +101,7 @@
         <div class="content-wrapper">
           <div class="page-header">
             <h3 class="page-title">
-              </span> Manage Vaccination Request
+              </span>Vaccination Appointment
             </h3>
             <nav aria-label="breadcrumb">
               <ul class="breadcrumb">
@@ -114,11 +114,11 @@
           <div class="col-lg-12 grid-margin stretch-card">
             <div class="card">
               <div class="card-body">
-                <h4 class="card-title">Vaccination Request</h4>
+                <h4 class="card-title">Vaccination Appointment</h4>
                 <p class="card-description" style="display: flex; align-items: center; justify-content: space-between;">
                   <span>Easily add, update, and remove vaccine type.</span>
                 <div class="container">
-                  <input type="text" class="search-bar" id="search-input" placeholder="Search by booking number">
+                  <input type="text" class="search-bar" id="search-input" placeholder="Search by appointment number">
                 </div>
                 </p>
 
@@ -181,7 +181,7 @@
                     $offset = ($current_page - 1) * $limit;
 
                     // query with limit and offset
-                    $query = "SELECT * FROM vaccinationslot WHERE status = 0 LIMIT $offset, $limit";
+                    $query = "SELECT * FROM vaccinationslot WHERE status = 1 LIMIT $offset, $limit";
                     $result = $conn->query($query);
 
                     ?>
@@ -197,8 +197,6 @@
                       echo "<td>" . date("g:i a", strtotime($row["vaccinationtime"])) . "</td>";
                       echo "<td>";
                       echo "<button class='btn btn-primary btn-sm' data-id='" . $row["id"] . "'><i class='mdi mdi-pencil' style='color: blue; font-size: 24px;'></i></button>";
-                      echo " ";
-                      echo "<a href='#' class='btn btn-danger btn-sm delete-btn' data-id='" . $row["id"] . "'><i class='mdi mdi-delete' style='color: red; font-size: 24px;'></i></a>";
                       echo "</td>";
                       echo "</tr>";
                       $counter++; // increment the counter
@@ -324,7 +322,6 @@
                   tableBody += '<td>' + item.created_at + '</td>';
                   tableBody += '<td>';
                   tableBody += "<button class='btn btn-primary btn-sm' data-id='" + item.id + "'><i class='mdi mdi-pencil' style='color: blue; font-size: 24px;'></i></button>";
-                  tableBody += '<a href="#" class="btn btn-danger btn-sm delete-btn" data-id="' + item.id + '"><i class="mdi mdi-delete" style="color: red; font-size: 24px;"></i></a>';
                   tableBody += '</td>';
                   tableBody += '</tr>';
                 });
@@ -369,9 +366,8 @@
             },
             success: function(data) {
               if (data.success) {
-                // Store the data in sessionStorage (or localStorage) before redirecting
                 sessionStorage.setItem('updateData', JSON.stringify(data));
-                window.location.href = 'updatevaccinationrequest.php';
+                window.location.href = 'updateappointment.php';
               } else {
                 console.error('Error:', data.message);
                 // alert('Error fetching data: ' data.message);

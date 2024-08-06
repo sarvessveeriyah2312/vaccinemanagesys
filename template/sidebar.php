@@ -70,6 +70,12 @@
                     <i class="mdi mdi-needle menu-icon"></i>
                 </a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href="vaccineappointment.php">
+                    <span class="menu-title">Appointment</span>
+                    <i class="mdi mdi-calendar menu-icon"></i>
+                </a>
+            </li>
          </li>
          
         <?php endif; ?>
