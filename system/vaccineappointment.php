@@ -181,7 +181,7 @@
                     $offset = ($current_page - 1) * $limit;
 
                     // query with limit and offset
-                    $query = "SELECT * FROM vaccinationslot WHERE status = 1 LIMIT $offset, $limit";
+                    $query = "SELECT * FROM vaccinationslot WHERE status = 1 OR status = 3 LIMIT $offset, $limit";
                     $result = $conn->query($query);
 
                     ?>

@@ -106,21 +106,21 @@
                                 <p class="card-description" style="display: flex; align-items: center; justify-content: space-between;">
                                     Book your vaccination slot here based on your preferrence.
                                 </p>
-                                <form id="updateForm" method="post" action="uupdateappointment.php">
+                                <form id="updateForm" method="post" action="updateappointment.php">
                                     <div class="form-group row">
                                         <div class="col-md-6">
                                             <label for="first_name">First Name</label>
-                                            <input type="text" class="form-control" id="first_name" name="first_name" disabled>
+                                            <input type="text" class="form-control" id="first_name" name="first_name" >
                                         </div>
                                         <div class="col-md-6">
                                             <label for="last_name">Last Name</label>
-                                            <input type="text" class="form-control" id="last_name" name="last_name" disabled>
+                                            <input type="text" class="form-control" id="last_name" name="last_name" >
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <div class="col-md-6">
                                             <label for="idnumber">NRIC/Passport.No</label>
-                                            <input type="text" class="form-control" id="idnumber" name="idnumber" disabled>
+                                            <input type="text" class="form-control" id="idnumber" name="idnumber" >
                                         </div>
                                         <div class="col-md-6">
                                             <label for="gender">Gender</label>
@@ -147,7 +147,7 @@
                                         </div>
                                         <div class="col-md-6">
                                             <label for="birth_date">D.O.B</label>
-                                            <input type="date" class="form-control" id="birth_date" name="birth_date" disabled>
+                                            <input type="date" class="form-control" id="birth_date" name="birth_date" >
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -174,7 +174,7 @@
                         
                                     <div class="form-group">
                                         <label for="VaccineType">Prefered Vaccine</label>
-                                        <select name="VaccineType" class="form-control" id="VaccineType" disabled>
+                                        <select name="VaccineType" class="form-control" id="VaccineType" >
                                             <option value="">Select Vaccine Type</option>
                                             <?php
                                             $stmt = $conn->prepare("SELECT * FROM vaccinetype");
@@ -205,19 +205,19 @@
                                     <div class="form-group row">
                                         <div class="col-md-6">
                                             <label for="vaccinationdate">Preferred Vaccination Date</label>
-                                            <input type="date" name="vaccinationdate" class="form-control" id="vaccinationdate" disabled>
+                                            <input type="date" name="vaccinationdate" class="form-control" id="vaccinationdate" >
                                         </div>
                                         <div class="col-md-6">
                                             <label for="vaccinationtime">Preferred Vaccination Time</label>
-                                            <input type="time" name="vaccinationtime" class="form-control" id="vaccinationtime" disabled>
+                                            <input type="time" name="vaccinationtime" class="form-control" id="vaccinationtime" >
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label for="vaccinationcenter">Dosage (ml)</label>
-                                        <input type="number" name="dosage" class="form-control" id="vaccinationtime" >
+                                        <input type="number" name="dosage" class="form-control" id="dosage" >
                                  
                                     </div>
-                                   <input type="hidden" id="id" name="id">
+                                   <input type="hidden" id="user_id" name="user_id">
     <!-- Approve and Reject buttons -->
     <button type="submit" class="btn btn-gradient-success btn-rounded btn-fw btn-sm">
         <i class="fas fa-check"></i> Submit
@@ -262,6 +262,7 @@ $(document).ready(function() {
         try {
             // Populate the form fields with the data
             $('#id').val(updateData.id);
+            $('#user_id').val(updateData.user_id);
             $('#first_name').val(updateData.first_name);
             $('#last_name').val(updateData.last_name);
             $('#idnumber').val(updateData.idnumber);
@@ -331,17 +332,35 @@ $(document).ready(function() {
             url: 'insertvaccinationrecord.php',
             type: 'POST',
             data: $(this).serialize(),
+            dataType: 'json', // Expect JSON response
             success: function(response) {
                 // Handle the JSON response
                 if (response.success) {
-                    alert(response.message);
-                    window.location.href = 'managevaccinerequest.php'; // Redirect after successful submission
+                    console.log(response.message);
+                    window.location.href = 'vaccineappointment.php'; // Redirect after successful submission
                 } else {
-                    alert(response.message);
+                    console.log(response.message);
                 }
             },
             error: function(xhr, status, error) {
-                alert('An error occurred while submitting the form.');
+                // Provide detailed error feedback
+                let errorMessage = 'An error occurred while submitting the form.';
+                if (xhr.status === 0) {
+                    errorMessage = 'Not connected. Please verify your network connection.';
+                } else if (xhr.status === 404) {
+                    errorMessage = 'The requested page not found. [404]';
+                } else if (xhr.status === 500) {
+                    errorMessage = 'Internal Server Error [500].';
+                } else if (error === 'parsererror') {
+                    errorMessage = 'Requested JSON parse failed.';
+                } else if (error === 'timeout') {
+                    errorMessage = 'Time out error.';
+                } else if (error === 'abort') {
+                    errorMessage = 'Ajax request aborted.';
+                } else {
+                    errorMessage = 'Uncaught Error.\n' + xhr.responseText;
+                }
+                console.log(errorMessage);
             }
         });
     });

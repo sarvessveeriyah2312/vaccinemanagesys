@@ -131,7 +131,7 @@
           FROM vaccinationslot vs
           JOIN vaccinetype vt ON vs.VaccineType = vt.id
           JOIN vaccinationcenter vc ON vs.vaccinationcenter = vc.id
-          WHERE vs.user_id = $user_id AND vs.status != 3";
+          WHERE vs.user_id = $user_id AND vs.status != 4";
                                 $result = $conn->query($query);
 
                                 ?>
@@ -165,9 +165,12 @@
                                                     echo "<label class='badge badge-warning'>Pending</label>";
                                                 } elseif ($row["status"] == 2) {
                                                     echo "<label class='badge badge-danger'>Rejected</label>";
+                                                } elseif ($row["status"] == 3) {
+                                                    echo "<label class='badge badge-info'>Appointment: 2nd Vaccination</label>";
                                                 } else {
                                                     echo "<label class='badge badge-danger'>Inactive</label>";
                                                 }
+                                                
                                                 echo "</td>";
                                                 echo "<td>";
                                                 // echo "<a href='#' class='btn btn-primary btn-sm' data-toggle='modal' data-target='#editModal' data-id='" . $row["id"] . "'><i class='mdi mdi-pencil'></i> Edit</a>";
@@ -176,7 +179,7 @@
                                                     echo "<a href='#' class='btn btn-primary btn-sm' data-toggle='modal' data-target='#editModal' data-id='" . $row["id"] . "'><i class='mdi mdi-pencil'></i> Edit</a>";
                                                     echo " ";
                                                     echo "<a href='#' class='btn btn-danger btn-sm delete-btn' data-id='" . $row["id"] . "'><i class='mdi mdi-delete'></i> Delete</a>";
-                                                } else if ($row["status"] == 1) {
+                                                } else if ($row["status"] == 1 || $row["status"] == 3) {
                                                     echo "<a href='#' class='btn btn-success btn-sm download-btn' data-id='" . $row["id"] . "' data-toggle='modal' data-target='#pdf-modal'><i class='mdi mdi-download'></i> Download</a>";
                                                 }
                                                 echo "</td>";
@@ -214,8 +217,6 @@
                                                     <th> Booking Slot ID </th>
                                                     <th> Vaccination Center </th>
                                                     <th> Vaccine </th>
-                                                    <th> Vaccination Date </th>
-                                                    <th> Vaccination Time </th>
                                                     <th> Status </th>
                                                 </tr>
                                             </thead>
@@ -229,8 +230,6 @@
                                                         echo "<td>" . $row["booking_no"] . "</td>";
                                                         echo "<td>" . $row["centername"] . "</td>";
                                                         echo "<td>" . $row["vaccinename"] . "</td>";
-                                                        echo "<td>" . $row["vaccinationdate"] . "</td>";
-                                                        echo "<td>" . date("g:i a", strtotime($row["vaccinationtime"])) . "</td>";
                                                         echo "<td>";
                                                         if ($row["status"] == 1) {
                                                             echo "<label class='badge badge-success'>Approved</label>";
