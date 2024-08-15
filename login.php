@@ -44,7 +44,7 @@
                 <i class="fas fa-lock"></i>
                 <input type="password" name="password" id="password" placeholder="Enter your password" required>
               </div>
-              <div class="text"><a href="#">Forgot password?</a></div>
+              <div class="text"><a href="forgotpassword.php">Forgot password?</a></div>
               <div class="button input-box">
                 <input type="submit" name="login" value="Login">
               </div>

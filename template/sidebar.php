@@ -58,6 +58,12 @@
                 </a>
             </li>
          </li>
+         <li class="nav-item">
+                <a class="nav-link" href="bwreports.php">
+                    <span class="menu-title">B/W Dates Reports</span>
+                    <i class="mdi mdi-file-document menu-icon"></i>
+                </a>
+            </li>
             </li>
         <?php endif; ?>
 
@@ -74,6 +80,12 @@
                 <a class="nav-link" href="vaccineappointment.php">
                     <span class="menu-title">Appointment</span>
                     <i class="mdi mdi-calendar menu-icon"></i>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="bwreports.php">
+                    <span class="menu-title">B/W Dates Reports</span>
+                    <i class="mdi mdi-file-document menu-icon"></i>
                 </a>
             </li>
          </li>

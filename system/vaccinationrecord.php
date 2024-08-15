@@ -5,7 +5,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Purple Admin</title>
+    <title>Covid.19 Vaccination Management System</title>
     <!-- plugins:css -->
     <link rel="stylesheet" href="../sources/vendors/mdi/css/materialdesignicons.min.css">
     <link rel="stylesheet" href="../sources/vendors/css/vendor.bundle.base.css">
@@ -166,7 +166,7 @@
                                                 } elseif ($row["status"] == 2) {
                                                     echo "<label class='badge badge-danger'>Rejected</label>";
                                                 } elseif ($row["status"] == 3) {
-                                                    echo "<label class='badge badge-info'>Appointment: 2nd Vaccination</label>";
+                                                    echo "<label class='badge badge-info'>Appointment: 2nd Dose</label>";
                                                 } else {
                                                     echo "<label class='badge badge-danger'>Inactive</label>";
                                                 }
@@ -238,9 +238,9 @@
                                                         } elseif ($row["status"] == 2) {
                                                             echo "<label class='badge badge-danger'>Rejected</label>";
                                                         } elseif ($row["status"] == 3) {
-                                                            echo "<label class='badge badge-info'>Vaccination 1 Completed</label>";
+                                                            echo "<label class='badge badge-info'>Dose 1 Completed</label>";
                                                         } elseif ($row["status"] == 4) {
-                                                            echo "<label class='badge badge-info'>Vaccination 2 Completed</label>";
+                                                            echo "<label class='badge badge-info'>Dose 2 Completed</label>";
                                                         } else {
                                                             echo "<label class='badge badge-danger'>Inactive</label>";
                                                         }

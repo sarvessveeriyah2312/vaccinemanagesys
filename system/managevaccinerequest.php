@@ -5,7 +5,7 @@
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>Purple Admin</title>
+  <title>Covid.19 Vaccination Management System</title>
   <!-- plugins:css -->
   <link rel="stylesheet" href="../sources/vendors/mdi/css/materialdesignicons.min.css">
   <link rel="stylesheet" href="../sources/vendors/css/vendor.bundle.base.css">
@@ -155,7 +155,7 @@
                       <th> Booking No </th>
                       <th> First Name </th>
                       <th> Last Name </th>
-                      <th> Expiry Date </th>
+                      <th> Vaccination Date </th>
                       <th> Registered On </th>
                       <th> Action </th>
                     </tr>
