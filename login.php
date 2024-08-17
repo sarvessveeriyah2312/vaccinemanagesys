@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>Login and Registration Form in HTML & CSS | CodingLab</title>
+  <title>Login | Covid.19 Vaccination Management System</title>
   <link rel="stylesheet" href="sources/css/login.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -55,6 +55,7 @@
       </div>
     </div>
   </div>
+  
   <!-- Add SweetAlert 2 JavaScript file -->
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.js"></script>
 

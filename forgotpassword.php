@@ -3,11 +3,10 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>Forgot Password</title>
+  <title>Forgot Password | Covid.19 Vaccination Management System</title>
   <link rel="stylesheet" href="sources/css/login.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="sources/css/login.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.css">
   <style>
   .dialogue {
@@ -108,7 +107,7 @@
     <div class="forms">
       <div class="form-content">
         <div class="login-form">
-          <div class="title">Forgot Password</div>
+          <div class="title">Forgot Password </div>
           <form id="emailForm">
             <div class="input-boxes">
               <div class="input-box">

@@ -173,12 +173,9 @@
                                                 
                                                 echo "</td>";
                                                 echo "<td>";
-                                                // echo "<a href='#' class='btn btn-primary btn-sm' data-toggle='modal' data-target='#editModal' data-id='" . $row["id"] . "'><i class='mdi mdi-pencil'></i> Edit</a>";
+                                                
                                                 echo " ";
                                                 if ($row["status"] == 0) {
-                                                    echo "<a href='#' class='btn btn-primary btn-sm' data-toggle='modal' data-target='#editModal' data-id='" . $row["id"] . "'><i class='mdi mdi-pencil'></i> Edit</a>";
-                                                    echo " ";
-                                                    echo "<a href='#' class='btn btn-danger btn-sm delete-btn' data-id='" . $row["id"] . "'><i class='mdi mdi-delete'></i> Delete</a>";
                                                 } else if ($row["status"] == 1 || $row["status"] == 3) {
                                                     echo "<a href='#' class='btn btn-success btn-sm download-btn' data-id='" . $row["id"] . "' data-toggle='modal' data-target='#pdf-modal'><i class='mdi mdi-download'></i> Download</a>";
                                                 }

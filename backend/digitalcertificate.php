@@ -14,7 +14,7 @@ $stmt = $conn->prepare("SELECT vs.*,
 FROM vaccinationslot vs
 JOIN vaccinetype vt ON vs.VaccineType = vt.id
 JOIN vaccinationcenter vc ON vs.vaccinationcenter = vc.id
-JOIN vaccinerecord vr ON vs.user_id = user_id
+JOIN vaccinerecord vr ON vr.userid = user_id
 WHERE vs.user_id = ?
   AND  vs.status = 4;");
 $stmt->bind_param("i", $id);

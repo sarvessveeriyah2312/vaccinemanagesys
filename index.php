@@ -5,13 +5,14 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <title>Covid &mdash; Website Template by Colorlib</title>
+  <title> Covid.19 Vaccination Management System</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">    
 
   <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@400;700;900&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="sources/fonts/icomoon/style.css">
+  <link rel="stylesheet" href="./sources/css/style2.css">
 
   <link rel="stylesheet" href="sources/css/bootstrap.min.css">
   <link rel="stylesheet" href="sources/css/jquery-ui.css">
@@ -60,7 +61,7 @@
         <div class="row align-items-center">
 
           <div class="col-6 col-xl-2">
-            <div class="mb-0 site-logo"><a href="index.php" class="mb-0">Covid<span class="text-primary">.</span> </a></div>
+            <div class="mb-0 site-logo"><a href="index.php" class="mb-0">Covid.19<span class="text-primary"></span> </a></div>
           </div>
 
           <div class="col-12 col-md-10 d-none d-xl-block">
@@ -68,28 +69,6 @@
 
               <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
                 <li class="active"><a href="index.php" class="nav-link">Home</a></li>
-                <li class="has-children">
-                  <a href="prevention.html" class="nav-link">Prevention</a>
-                  <ul class="dropdown">
-                    <li><a href="#" class="nav-link">Stay at home</a></li>
-                    <li><a href="#" class="nav-link">Keep social distancing</a></li>
-                    <li><a href="#" class="nav-link">Wear facemasl</a></li>
-                    <li><a href="#" class="nav-link">Wash your hands</a></li>
-                    <li class="has-children">
-                      <a href="#">More Links</a>
-                      <ul class="dropdown">
-                        <li><a href="#">Menu One</a></li>
-                        <li><a href="#">Menu Two</a></li>
-                        <li><a href="#">Menu Three</a></li>
-                      </ul>
-                    </li>
-                  </ul>
-                </li>
-                <li><a href="symptoms.html" class="nav-link">Symptoms</a></li>
-                <li><a href="about.html" class="nav-link">About</a></li>
-
-
-                <li><a href="blog.html" class="nav-link">Blog</a></li>
                 <li><a href="login.php" class="nav-link">Login</a></li>
               </ul>
             </nav>
@@ -111,7 +90,7 @@
           <div class="col-lg-6 mr-auto text-center text-lg-left">
             <span class="d-block subheading">Covid-19 Awareness</span>
             <h1 class="heading mb-3">Stay Safe. Stay Home.</h1>
-            <p class="mb-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel a, nulla incidunt eaque sit praesentium porro consectetur optio!</p>
+            <p class="mb-5">COVID-19, or Coronavirus Disease 2019, is an infectious disease caused by the SARS-CoV-2 virus. It was first identified in December 2019 in Wuhan, China, and quickly spread globally, leading to a pandemic.</p>
             <p class="mb-4"><a href="#" class="btn btn-primary">How to prevent</a></p>
 
 
@@ -135,7 +114,7 @@
         <div class="row mb-3">
           <div class="col-lg-7 text-center mx-auto">
             <h2 class="section-heading">Coronavirus Statistics</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet, voluptate!</p>
+            <p>Coronavirus statistics track data on COVID-19 cases, recoveries, deaths, and vaccinations. They are essential for understanding the virus's spread, impact, and management, and include figures on total cases, active cases, mortality rates, and vaccination coverage.</p>
           </div>
         </div>
         <div class="row"> 
@@ -187,68 +166,17 @@
           </div>
           <div class="col-lg-5 ml-auto">
             <h2 class="mb-4 section-heading">What is Coronavirus?</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ex officia quas, modi sit eligendi numquam!</p>
+            <p>COVID-19, or Coronavirus Disease 2019, is an infectious disease caused by the SARS-CoV-2 virus. It was first identified in December 2019 in Wuhan, China, and quickly spread globally, leading to a pandemic.</p>
             <ul class="list-check list-unstyled mb-5">
-              <li>Lorem ipsum dolor sit amet</li>
-              <li>Consectetur adipisicing elit</li>
-              <li>Unde doloremque</li>
+              <li>COVID-19 primarily spreads through respiratory droplets when an infected person coughs, sneezes, or talks. </li>
+              <li>It can also spread by touching surfaces contaminated with the virus</li>
+              <li>Touching the face, although this is less common</li>
             </ul>
             <p><a href="#" class="btn btn-primary">Learn more</a></p>
           </div>
         </div>
       </div>
     </div>
-
-    <div class="container pb-5">
-      <div class="row">
-        <div class="col-lg-3">
-          <div class="feature-v1 d-flex align-items-center">
-            <div class="icon-wrap mr-3">
-              <span class="flaticon-protection"></span>
-            </div>
-            <div>
-              <h3>Protection</h3>
-              <span class="d-block">Lorem ipsum dolor sit.</span>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-3">
-          <div class="feature-v1 d-flex align-items-center">
-            <div class="icon-wrap mr-3">
-              <span class="flaticon-patient"></span>
-            </div>
-            <div>
-              <h3>Prevention</h3>
-              <span class="d-block">Lorem ipsum dolor sit.</span>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-3">
-          <div class="feature-v1 d-flex align-items-center">
-            <div class="icon-wrap mr-3">
-              <span class="flaticon-hand-sanitizer"></span>
-            </div>
-            <div>
-              <h3>Treatments</h3>
-              <span class="d-block">Lorem ipsum dolor sit.</span>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-3">
-          <div class="feature-v1 d-flex align-items-center">
-            <div class="icon-wrap mr-3">
-              <span class="flaticon-virus"></span>
-            </div>
-            <div>
-              <h3>Symptoms</h3>
-              <span class="d-block">Lorem ipsum dolor sit.</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-
     <div class="site-section bg-primary-light">
       <div class="container">
         <div class="row align-items-center">
@@ -262,7 +190,7 @@
                   </div>
                   <div class="body">
                     <h3>Stay at home</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odio, debitis!</p>
+                    <p>"Stay" typically refers to the duration or period one spends in a particular place or situation.</p>
                   </div>
                 </div>
 
@@ -272,7 +200,7 @@
                   </div>
                   <div class="body">
                     <h3>Wear facemask</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odio, debitis!</p>
+                    <p>"Wear a facemask" means covering your nose and mouth with a mask to help prevent the spread of viruses and protect yourself and others.</p>
                   </div>
                 </div>
               </div>
@@ -283,7 +211,7 @@
                   </div>
                   <div class="body">
                     <h3>Keep social distancing</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odio, debitis!</p>
+                    <p>"Keep social distancing" means maintaining a safe distance from others to reduce the risk of spreading illness.</p>
                   </div>
                 </div>
 
@@ -293,7 +221,7 @@
                   </div>
                   <div class="body">
                     <h3>Wash your hands</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odio, debitis!</p>
+                    <p>"Wash your hands" means thoroughly cleaning them with soap and water to remove germs and reduce the risk of illness.</p>
                   </div>
                 </div>
               </div>
@@ -302,13 +230,13 @@
           </div>
           <div class="col-lg-5 ml-auto">
             <h2 class="section-heading mb-4">How to Prevent Coronavirus?</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Itaque corporis doloribus consequatur fugit voluptatum ex rerum perspiciatis cupiditate, esse hic!</p>
-            <p class="mb-4">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptas, error!</p>
+            <p>To prevent coronavirus, wear a facemask, practice social distancing, wash your hands frequently, use hand sanitizer when soap isn’t available, avoid touching your face, cover coughs and sneezes, and regularly clean and disinfect surfaces. Stay informed by following guidelines from health authorities.</p>
 
             <ul class="list-check list-unstyled mb-5">
-              <li>Lorem ipsum dolor sit amet</li>
-              <li>Consectetur adipisicing elit</li>
-              <li>Unde doloremque</li>
+              <li>Stay at home</li>
+              <li>Wear facemask</li>
+              <li>Keep social distancing</li>
+              <li>Wash your hands</li>
             </ul>
 
             <p><a href="#" class="btn btn-primary">Read more about prevention</a></p>
@@ -323,7 +251,7 @@
           <div class="col-lg-7 mx-auto text-center">
             <span class="subheading">What you need to do</span>
             <h2 class="mb-4 section-heading">How To Protect Yourself</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ex officia quas, modi sit eligendi numquam!</p>
+            <p>To protect yourself from illness, wear a facemask, practice social distancing, wash your hands regularly, use hand sanitizer, avoid touching your face, cover coughs and sneezes, clean and disinfect frequently-touched surfaces, and stay informed about health guidelines.</p>
           </div>
         </div>
         <div class="row">
@@ -366,7 +294,7 @@
         <div class="row mb-5">
           <div class="col-lg-7 mx-auto text-center">
             <h2 class="mb-4 section-heading">Symptoms of Coronavirus</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ex officia quas, modi sit eligendi numquam!</p>
+            <p>Symptoms of coronavirus (COVID-19) include fever, cough, shortness of breath, fatigue, muscle aches, headache, loss of taste or smell, sore throat, congestion, nausea, vomiting, and diarrhea. Symptoms can vary from mild to severe, and some individuals may not show any symptoms.</p>
           </div>
         </div>
         <div class="row">
@@ -377,7 +305,7 @@
               </div>
               <div class="text">
                 <h3>High Fever</h3>
-                <p> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nostrum ipsum repellendus animi modi iure provident, cupiditate perferendis voluptatem!</p>
+                <p> High fever is a body temperature significantly above the normal range, typically above 100.4°F (38°C). It is often a sign of infection or inflammation and can be associated with symptoms like chills, sweating, and discomfort.</p>
               </div>
             </div>
           </div>
@@ -388,7 +316,7 @@
               </div>
               <div class="text">
                 <h3>Cough</h3>
-                <p> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nulla ullam illo laborum repellendus vel esse dolor, sunt exercitationem.</p>
+                <p> A cough is a sudden, forceful expulsion of air from the lungs through the mouth, often a reflex to clear the airways of irritants or mucus. It can be dry or productive (with mucus) and is commonly associated with respiratory infections.</p>
               </div>
             </div>
           </div>
@@ -399,7 +327,7 @@
               </div>
               <div class="text">
                 <h3>Sore Troath</h3>
-                <p> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum esse voluptatum, vel inventore at! Ullam, libero reiciendis amet?</p>
+                <p> A sore throat is characterized by pain, scratchiness, or irritation in the throat, often making swallowing uncomfortable. It can be caused by infections, allergies, or irritants.</p>
               </div>
             </div>
           </div>
@@ -411,7 +339,7 @@
               </div>
               <div class="text">
                 <h3>Headache</h3>
-                <p> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus autem voluptatem ratione veniam rerum qui quibusdam reprehenderit quis.</p>
+                <p> A headache is pain or discomfort in the head, scalp, or neck. It can vary in intensity and may be caused by various factors, including stress, tension, illness, or dehydration.</p>
               </div>
             </div>
           </div>
@@ -421,148 +349,13 @@
           <div class="col-lg-10">
             <div class="note row">
 
-              <div class="col-lg-8 mb-4 mb-lg-0"><strong>Stay at home and call your doctor:</strong> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium, eaque.</div>
-              <div class="col-lg-4 text-lg-right">
-                <a href="#" class="btn btn-primary"><span class="icon-phone mr-2 mt-3"></span>Help line</a>
-              </div>
+              <div class="col-lg-8 mb-4 mb-lg-0"><strong>Stay at home and call your doctor:</strong> means to remain in your residence if you're feeling unwell or suspect you have an illness, and contact your healthcare provider for advice and potential treatment.</div>
             </div>
           </div>
         </div>
       </div>
     </div>
-
-
-    <div class="site-section">
-      <div class="container">
-        <div class="row mb-5">
-          <div class="col-lg-7 mx-auto text-center">
-            <h2 class="mb-4 section-heading">News &amp; Articles</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ex officia quas, modi sit eligendi numquam!</p>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="col-lg-4">
-            <div class="post-entry">
-              <a href="#" class="thumb">
-                <span class="date">30 Jul, 2020</span>
-                <img src="sources/images/hero_1.jpg" alt="Image" class="img-fluid">
-              </a>
-              <div class="post-meta text-center">
-                <a href="">
-                  <span class="icon-user"></span>
-                  <span>Admin</span>
-                </a>
-                <a href="#">
-                  <span class="icon-comment"></span>
-                  <span>3 Comments</span>
-                </a>
-              </div>
-              <h3><a href="#">How Coronavirus Very Contigous</a></h3>
-            </div>
-          </div>
-          <div class="col-lg-4">
-            <div class="post-entry">
-              <a href="#" class="thumb">
-                <span class="date">30 Jul, 2020</span>
-                <img src="sources/images/hero_2.jpg" alt="Image" class="img-fluid">
-              </a>
-              <div class="post-meta text-center">
-                <a href="">
-                  <span class="icon-user"></span>
-                  <span>Admin</span>
-                </a>
-                <a href="#">
-                  <span class="icon-comment"></span>
-                  <span>3 Comments</span>
-                </a>
-              </div>
-              <h3><a href="#">How Coronavirus Very Contigous</a></h3>
-            </div>
-          </div>
-          <div class="col-lg-4">
-            <div class="post-entry">
-              <a href="#" class="thumb">
-                <span class="date">30 Jul, 2020</span>
-                <img src="sources/images/hero_1.jpg" alt="Image" class="img-fluid">
-              </a>
-              <div class="post-meta text-center">
-                <a href="">
-                  <span class="icon-user"></span>
-                  <span>Admin</span>
-                </a>
-                <a href="#">
-                  <span class="icon-comment"></span>
-                  <span>3 Comments</span>
-                </a>
-              </div>
-              <h3><a href="#">How Coronavirus Very Contigous</a></h3>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="site-footer">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-4">
-            <h2 class="footer-heading mb-4">About</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Modi cumque tenetur inventore veniam, hic vel ipsa necessitatibus ducimus architecto fugiat!</p>
-            <div class="my-5">
-              <a href="#" class="pl-0 pr-3"><span class="icon-facebook"></span></a>
-              <a href="#" class="pl-3 pr-3"><span class="icon-twitter"></span></a>
-              <a href="#" class="pl-3 pr-3"><span class="icon-instagram"></span></a>
-              <a href="#" class="pl-3 pr-3"><span class="icon-linkedin"></span></a>
-            </div>
-          </div>
-          <div class="col-lg-8">
-            <div class="row">
-              <div class="col-lg-4">
-                <h2 class="footer-heading mb-4">Quick Links</h2>
-                <ul class="list-unstyled">
-                  <li><a href="#">Symptoms</a></li>
-                  <li><a href="#">Prevention</a></li>
-                  <li><a href="#">FAQs</a></li>
-                  <li><a href="#">About Coronavirus</a></li>
-                  <li><a href="#">Contact Us</a></li>
-                </ul>
-              </div>
-              <div class="col-lg-4">
-                <h2 class="footer-heading mb-4">Helpful Link</h2>
-                <ul class="list-unstyled">
-                  <li><a href="#">Helathcare Professional</a></li>
-                  <li><a href="#">LGU Facilities</a></li>
-                  <li><a href="#">Protect Your Family</a></li>
-                  <li><a href="#">World Health</a></li>
-                </ul>
-              </div>
-              <div class="col-lg-4">
-                <h2 class="footer-heading mb-4">Resources</h2>
-                <ul class="list-unstyled">
-                  <li><a href="#">WHO Website</a></li>
-                  <li><a href="#">CDC Website</a></li>
-                  <li><a href="#">Gov Website</a></li>
-                  <li><a href="#">DOH Website</a></li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="row text-center">
-          <div class="col-md-12">
-            <div class="border-top pt-5">
-              <p class="copyright"><small>
-                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="icon-heart text-danger" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank" >Colorlib</a>
-                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></small></p>
-
-              </div>
-            </div>
-
-          </div>
-        </div>
-      </div>
+    <?php require './template/footer.php'; ?>
     </div>
 
   </div> <!-- .site-wrap -->

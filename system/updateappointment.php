@@ -336,10 +336,21 @@ $(document).ready(function() {
             success: function(response) {
                 // Handle the JSON response
                 if (response.success) {
-                    console.log(response.message);
-                    window.location.href = 'vaccineappointment.php'; // Redirect after successful submission
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Success',
+                        text: response.message,
+                        confirmButtonText: 'OK'
+                    }).then(() => {
+                        window.location.href = 'vaccineappointment.php'; // Redirect after successful submission
+                    });
                 } else {
-                    console.log(response.message);
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Error',
+                        text: response.message,
+                        confirmButtonText: 'OK'
+                    });
                 }
             },
             error: function(xhr, status, error) {
@@ -360,12 +371,16 @@ $(document).ready(function() {
                 } else {
                     errorMessage = 'Uncaught Error.\n' + xhr.responseText;
                 }
-                console.log(errorMessage);
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: errorMessage,
+                    confirmButtonText: 'OK'
+                });
             }
         });
     });
 });
-
 </script>
 <script>
 $(document).ready(function() {

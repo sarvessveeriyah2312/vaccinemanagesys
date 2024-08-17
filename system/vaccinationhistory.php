@@ -136,7 +136,7 @@ $query = "SELECT vs.*,
 FROM vaccinationslot vs
 JOIN vaccinetype vt ON vs.VaccineType = vt.id
 JOIN vaccinationcenter vc ON vs.vaccinationcenter = vc.id
-JOIN vaccinerecord vr ON vs.user_id = user_id
+JOIN vaccinerecord vr ON vr.userid = $user_id
 WHERE vs.user_id = $user_id 
   AND (vs.status = 3 OR vs.status = 4);";
 $result = $conn->query($query);
@@ -159,7 +159,15 @@ if ($result->num_rows > 0) {
 
 } else {
     $firstName = "Not Available";
-    $lastName = "Not Available";
+$lastName = "Not Available";
+$idnumber = "Not Available";
+$dob = "Not Available";
+$vaccine1 = "Not Available";
+$vaccine2 = "Not Available";
+$type = "Not Available";
+$location = "Not Available";
+$covid = "Not Available";
+$disease = "Not Available";
 }
 ?>
 
@@ -218,7 +226,7 @@ if ($result->num_rows > 0) {
 FROM vaccinationslot vs
 JOIN vaccinetype vt ON vs.VaccineType = vt.id
 JOIN vaccinationcenter vc ON vs.vaccinationcenter = vc.id
-JOIN vaccinerecord vr ON vs.user_id = user_id
+JOIN vaccinerecord vr ON vr.userid = $user_id
 WHERE vs.user_id = $user_id 
   AND (vs.status = 3 OR vs.status = 4);";
                                         $result = $conn->query($query);
